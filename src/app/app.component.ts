@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'track-system-demo';
+  nameForTest = 'Demneru';
+  active = 1;
+  isCollapsed: boolean;
+
+  ngOnInit(): void {
+    this.isCollapsed = true;
+
+  }
 }
