@@ -6,13 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'track-system-demo';
-  nameForTest = 'Demneru';
-  active = 1;
-  isCollapsed: boolean;
 
-  ngOnInit(): void {
-    this.isCollapsed = true;
-
-  }
+  ngOnInit(): void {}
 }

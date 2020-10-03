@@ -1,0 +1,39 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
+  style="background-color: #e3f2fd"
+>
+  <a class="navbar-brand" [routerLink]="'.'">Track-system</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" ngbDropdown >
+        <a class="nav-link dropdown-toggle" [routerLink]="'.'" (click)="isCollapsed = true"
+        id="navbarDropdown" ngbDropdownToggle>Transacciones</a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <a ngbDropdownItem [routerLink]="'.'" (click)="isCollapsed = true">Registrar</a>
+          <a ngbDropdownItem [routerLink]="'.'" (click)="isCollapsed = true">Ver todas</a>
+      </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Trazabilidad</a>
+        <ng-template ngbNavContent>
+          <p>componente de trazabilidad</p>
+        </ng-template>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Iniciar sesión</a>
+        <ng-template ngbNavContent>
+          <p>componente de inicio de sesión</p>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+</nav>
