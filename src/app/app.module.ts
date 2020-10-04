@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { TrazabilidadComponent } from './trazabilidad/trazabilidad.component';
 import { HeaderComponent } from './header/header.component';
 import { RegistrarTransaccionComponent } from './transaccion/registrar-transaccion/registrar-transaccion.component';
+import { RegistrarTrazabilidadComponent } from './trazabilidad/registrar-trazabilidad/registrar-trazabilidad.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RegistrarTransaccionComponent } from './transaccion/registrar-transacci
     TransaccionComponent,
     TrazabilidadComponent,
     HeaderComponent,
-    RegistrarTransaccionComponent
+    RegistrarTransaccionComponent,
+    RegistrarTrazabilidadComponent
   ],
   imports: [
     BrowserModule,
