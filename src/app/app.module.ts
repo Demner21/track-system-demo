@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TrazabilidadComponent } from './trazabilidad/trazabilidad.component';
 import { HeaderComponent } from './header/header.component';
+import { RegistrarTransaccionComponent } from './transaccion/registrar-transaccion/registrar-transaccion.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     TransaccionComponent,
     TrazabilidadComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegistrarTransaccionComponent
   ],
   imports: [
     BrowserModule,
