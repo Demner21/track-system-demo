@@ -14,11 +14,9 @@
             >Aplicacion</label
           >
         </div>
-        <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion">
+        <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion" [(ngModel)]="selectedValue">
           <option selected>Selecciona...</option>
-          <option value="1">SIAC UNICO</option>
-          <option value="2">SISACT</option>
-          <option value="3">SIGEX</option>
+          <option *ngFor="let item of listAplicaciones" [value]="item.value">{{item.nombreAplicacion}}</option>
         </select>
       </div>
       <div class="row traz-input-div">
@@ -66,4 +64,9 @@
     </div>
     <div class="col-4"></div>
   </div>
+</div>
+<div class="containe">
+  <p>
+    The value for Aplicacion is {{selectedValue}}
+  </p>
 </div>

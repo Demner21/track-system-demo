@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import{ Transaccion} from './transaccion.model';
 
 @Component({
   selector: 'app-transaccion',
   templateUrl: './transaccion.component.html'
 })
 export class TransaccionComponent {
-  nombreAplicacion = 'SIGEX';
-  idTransaccion = '012354785';
+
+  @Input()  transaccionElement:Transaccion;
+
 }
