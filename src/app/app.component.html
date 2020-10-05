@@ -1,13 +1,21 @@
+<app-header (pageToLoad)="loadPageFeaure($event)"></app-header>
 <div class="container">
-  <app-header></app-header>
-  <app-registrar-transaccion
-  (transaccionCreada)="onTransaccionRegistrada($event)"></app-registrar-transaccion>
+  <div class="row">
+    <div class="col-md-12">
 
-  <app-transaccion
-  *ngFor="let transaccion of listaTransacciones"
-  [transaccionElement]="transaccion">
-  </app-transaccion>
-  <br>
+      <app-registrar-transaccion *ngIf="featurePage==='registrar-transaccion'"
+        (transaccionCreada)="onTransaccionRegistrada($event)"
+      >
+      </app-registrar-transaccion>
+      <div *ngIf="featurePage==='listar-transacciones'" >
+        <app-transaccion
+        *ngFor="let transaccion of listaTransacciones"
+        [transaccionElement]="transaccion"
+        >
+      </app-transaccion>
+      </div>
 
-  <app-registrar-trazabilidad></app-registrar-trazabilidad>
+      <app-registrar-trazabilidad *ngIf="featurePage==='listar-trazabilidades'"></app-registrar-trazabilidad>
+    </div>
+  </div>
 </div>

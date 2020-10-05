@@ -9,10 +9,15 @@ export class AppComponent {
   listaTransacciones:Transaccion[]=[
     new Transaccion('SISACT','VENTA','123')
   ];
+  featurePage: string;
 
   ngOnInit(): void {}
 
   onTransaccionRegistrada(transaccionData:Transaccion){
     this.listaTransacciones.push(transaccionData);
+  }
+
+  loadPageFeaure(feature:string){
+    this.featurePage=feature;
   }
 }
