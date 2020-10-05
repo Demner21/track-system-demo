@@ -20,7 +20,7 @@
           [(ngModel)]="aplicacionSeleccionada"
         >
           <option selected>Selecciona...</option>
-          <option *ngFor="let item of listAplicaciones" [value]="item.value">
+          <option *ngFor="let item of listAplicaciones" [value]="item.nombreAplicacion">
             {{ item.nombreAplicacion }}
           </option>
         </select>

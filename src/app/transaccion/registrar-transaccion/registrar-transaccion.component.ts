@@ -37,6 +37,7 @@ export class RegistrarTransaccionComponent implements OnInit {
     this.transaccionCreada.emit(
       new Transaccion(this.aplicacionSeleccionada,this.torreValor,this.transaccionValor)
     );
+
     this.aplicacionSeleccionada='';
     this.torreValor='';
     this.transaccionValor='';
