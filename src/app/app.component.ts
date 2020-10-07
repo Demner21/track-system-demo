@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
-import{ Transaccion} from './transaccion/transaccion.model';
+import { TransaccionService } from './services/transaccion.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  listaTransacciones:Transaccion[]=[
-    new Transaccion('SISACT','VENTA','123')
-  ];
+
+
   featurePage: string;
 
   ngOnInit(): void {}
 
-  onTransaccionRegistrada(transaccionData:Transaccion){
-    this.listaTransacciones.push(transaccionData);
-  }
+  constructor(private transaccionService:TransaccionService){}
 
   loadPageFeaure(feature:string){
     this.featurePage=feature;

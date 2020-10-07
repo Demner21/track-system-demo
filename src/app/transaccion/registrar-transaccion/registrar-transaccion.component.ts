@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TransaccionService } from 'src/app/services/transaccion.service';
 
 import {Transaccion} from '../transaccion.model';
 
@@ -9,10 +10,7 @@ import {Transaccion} from '../transaccion.model';
 })
 export class RegistrarTransaccionComponent implements OnInit {
 
-
-  @Output() transaccionCreada = new EventEmitter<Transaccion>();
-
-  aplicacionSeleccionada='';
+  aplicacionSeleccionada:string='';
   torreValor:string='';
   transaccionValor:string='';
 
@@ -22,25 +20,24 @@ export class RegistrarTransaccionComponent implements OnInit {
     {value:'3', nombreAplicacion:'SIGEX'},
     {value:'4', nombreAplicacion:'STEAM'},
   ];
-  constructor() { }
+
+  constructor(private registrarTransaccionService:TransaccionService) { }
 
   ngOnInit(): void {
   }
 
   onCrearTransaccion(){
 
-    if (this.aplicacionSeleccionada==='' || this.torreValor===''
-    || this.transaccionValor==='') {
-      return;
-    }
+    this.registrarTransaccionService.registrarTransaccion(
+      new Transaccion(this.aplicacionSeleccionada,this.torreValor,this.transaccionValor));
 
-    this.transaccionCreada.emit(
-      new Transaccion(this.aplicacionSeleccionada,this.torreValor,this.transaccionValor)
-    );
-
-    this.aplicacionSeleccionada='';
-    this.torreValor='';
-    this.transaccionValor='';
+    this.cleanVariables();
   }
 
+
+  private cleanVariables(): void {
+    this.aplicacionSeleccionada = '';
+    this.torreValor = '';
+    this.transaccionValor = '';
+  }
 }
