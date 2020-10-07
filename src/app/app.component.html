@@ -1,19 +1,8 @@
-<app-header (pageToLoad)="loadPageFeaure($event)"></app-header>
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
-      <app-registrar-transaccion
-        *ngIf="featurePage==='registrar-transaccion'">
-      </app-registrar-transaccion>
-
-      <app-listar-transacciones
-        *ngIf="featurePage==='listar-transacciones'">
-      </app-listar-transacciones>
-
-      <app-registrar-trazabilidad
-        *ngIf="featurePage==='listar-trazabilidades'">
-        </app-registrar-trazabilidad>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

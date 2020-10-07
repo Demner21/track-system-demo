@@ -8,14 +8,7 @@ import { TransaccionService } from './services/transaccion.service';
 })
 export class AppComponent {
 
-
-  featurePage: string;
-
   ngOnInit(): void {}
 
   constructor(private transaccionService:TransaccionService){}
-
-  loadPageFeaure(feature:string){
-    this.featurePage=feature;
-  }
 }

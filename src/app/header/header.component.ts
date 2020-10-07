@@ -6,8 +6,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() pageToLoad = new EventEmitter<string>();
-
   isCollapsed: boolean;
   constructor() { }
 
@@ -15,9 +13,8 @@ export class HeaderComponent implements OnInit {
     this.isCollapsed = true;
   }
 
-  onLoadPage(feature:string){
+  onLoadPage(){
     this.isCollapsed = true;
-    this.pageToLoad.emit(feature);
   }
 
 }

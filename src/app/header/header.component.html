@@ -18,15 +18,15 @@
         <a class="nav-link dropdown-toggle" [routerLink]="'.'" (click)="isCollapsed = true"
         id="navbarDropdown" ngbDropdownToggle>Transacciones</a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown">
-          <a ngbDropdownItem [routerLink]="'.'" (click)="onLoadPage('registrar-transaccion')">Registrar</a>
-          <a ngbDropdownItem [routerLink]="'.'" (click)="onLoadPage('listar-transacciones')">Ver todas</a>
+          <a ngbDropdownItem [routerLink]="'/registarTansaccion'" (click)="onLoadPage()">Registrar</a>
+          <a ngbDropdownItem [routerLink]="'/listarTransacciones'" (click)="onLoadPage()">Ver todas</a>
       </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'.'" (click)="onLoadPage('listar-trazabilidades')">Trazabilidad</a>
+        <a class="nav-link" [routerLink]="'/listarTrazabilidades'" (click)="onLoadPage()">Trazabilidad</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Iniciar sesión</a>
+        <a class="nav-link" [routerLink]="'/'" (click)="isCollapsed = true">Iniciar sesión</a>
       </li>
     </ul>
   </div>
