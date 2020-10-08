@@ -12,7 +12,7 @@
       <tbody>
         <tr *ngFor="let transaccion of listaTransacciones; index as i">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{ transaccion.transaccionValor | number }}</td>
+          <td>{{ transaccion.transaccionValor }}</td>
           <td>{{ transaccion.aplicacionSeleccionada }}</td>
           <td>{{ transaccion.torreValor }}</td>
         </tr>
