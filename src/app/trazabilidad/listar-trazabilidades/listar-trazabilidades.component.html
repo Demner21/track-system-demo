@@ -1,1 +1,78 @@
-<p>listar-trazabilidades works!</p>
+<div class="container">
+  <table class="table table-striped">
+    <caption>Lista de trazabilidades creadas</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Aplicación</th>
+        <th scope="col">Código de proyecto</th>
+        <th scope="col">Transacción</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trazabilidad of listaTranzabilidades; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ trazabilidad.aplicacion | number }}</td>
+          <td>{{ trazabilidad.proyecto.codigo }}</td>
+          <td>{{ trazabilidad.transaccion }}</td>
+          <td>07/10/2020</td>
+          <td><button class="btn btn-primary">More</button></td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col"></div>
+    <div class="col">
+      <h3>Gestión de trazabilidad</h3>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="i-traz-aplicacion"
+            >Aplicacion</label
+          >
+        </div>
+        <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion" [(ngModel)]="selectedValue">
+          <option selected>Selecciona...</option>
+          <option *ngFor="let item of listAplicaciones" [value]="item.value">{{item.nombreAplicacion}}</option>
+        </select>
+      </div>
+      <div class="row traz-input-div">
+        <label class="input-group-text" for="ex2">Codigo proyecto</label>
+        <input class="form-control traz-input" id="ex2" type="text" />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01"
+            >Transaccion</label
+          >
+        </div>
+        <select class="custom-select aplicacion-input-traz" id="inputGroupSelect01">
+          <option selected>Selecciona...</option>
+          <option value="1">TRX_1</option>
+          <option value="2">TRX_2</option>
+          <option value="3">TRX_3</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col btn-grabar-transaccion">
+      <button type="submit" class="btn btn-primary">Buscar Trazabilidad</button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+
+
+

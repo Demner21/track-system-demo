@@ -1,3 +1,4 @@
+import { Trazabiliad } from './../trazabilidad.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar-trazabilidades.component.css']
 })
 export class ListarTrazabilidadesComponent implements OnInit {
+  listaTranzabilidades: Trazabiliad[]=[
+    new Trazabiliad('11','Migración de plan','VENTA',{codigo:'123', descripcion:'test proyecto'},null)
+  ];
+  selectedValue='';
+
+  listAplicaciones=[
+    {value:'1', nombreAplicacion:'SIAC UNICO'},
+    {value:'2', nombreAplicacion:'SISACT'},
+    {value:'3', nombreAplicacion:'SIGEX'},
+    {value:'4', nombreAplicacion:'STEAM'},
+  ];
 
   constructor() { }
 
