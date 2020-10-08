@@ -13,6 +13,7 @@ import { RegistrarTransaccionComponent } from './transaccion/registrar-transacci
 import { RegistrarTrazabilidadComponent } from './trazabilidad/registrar-trazabilidad/registrar-trazabilidad.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { ListarTransaccionesComponent } from './transaccion/listar-transacciones/listar-transacciones.component';
+import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilidades/listar-trazabilidades.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ListarTransaccionesComponent } from './transaccion/listar-transacciones
     RegistrarTransaccionComponent,
     RegistrarTrazabilidadComponent,
     DropdownDirective,
-    ListarTransaccionesComponent
+    ListarTransaccionesComponent,
+    ListarTrazabilidadesComponent
   ],
   imports: [
     BrowserModule,
