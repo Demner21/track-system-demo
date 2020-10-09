@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 
 import {Transaccion} from '../transaccion.model';
@@ -14,16 +15,13 @@ export class RegistrarTransaccionComponent implements OnInit {
   torreValor:string='';
   transaccionValor:string='';
 
-  listAplicaciones=[
-    {value:'1', nombreAplicacion:'SIAC UNICO'},
-    {value:'2', nombreAplicacion:'SISACT'},
-    {value:'3', nombreAplicacion:'SIGEX'},
-    {value:'4', nombreAplicacion:'STEAM'},
-  ];
+  listAplicaciones=[];
 
-  constructor(private registrarTransaccionService:TransaccionService) { }
+  constructor(private registrarTransaccionService:TransaccionService,
+              private supplierDataService: SupplierDataService) { }
 
   ngOnInit(): void {
+    this.listAplicaciones=this.supplierDataService.listAplicaciones;
   }
 
   onCrearTransaccion(){

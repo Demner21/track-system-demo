@@ -1,5 +1,6 @@
 import { Trazabiliad } from './../trazabilidad.model';
 import { Component, OnInit } from '@angular/core';
+import { SupplierDataService } from 'src/app/services/supplier.data.service';
 
 @Component({
   selector: 'app-listar-trazabilidades',
@@ -12,16 +13,12 @@ export class ListarTrazabilidadesComponent implements OnInit {
   ];
   selectedValue='';
 
-  listAplicaciones=[
-    {value:'1', nombreAplicacion:'SIAC UNICO'},
-    {value:'2', nombreAplicacion:'SISACT'},
-    {value:'3', nombreAplicacion:'SIGEX'},
-    {value:'4', nombreAplicacion:'STEAM'},
-  ];
+  listAplicaciones=[];
 
-  constructor() { }
+  constructor(private supplierDataService:SupplierDataService) { }
 
   ngOnInit(): void {
+    this.listAplicaciones=this.supplierDataService.listAplicaciones;
   }
 
 }

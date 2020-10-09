@@ -1,3 +1,4 @@
+import { SupplierDataService } from './services/supplier.data.service';
 import { TransaccionComponent } from './transaccion/transaccion.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,7 +35,7 @@ import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilida
     NgbModule,
     FormsModule
   ],
-  providers: [TransaccionService],
+  providers: [TransaccionService,SupplierDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
