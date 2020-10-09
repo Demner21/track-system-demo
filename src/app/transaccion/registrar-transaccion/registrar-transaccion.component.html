@@ -2,7 +2,7 @@
   <div class="row align-items-start">
     <div class="col"></div>
     <div class="col">
-      <h3>Registro de transaccion</h3>
+      <h3>Registro de transacción</h3>
     </div>
     <div class="col"></div>
   </div>
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01"
-            >Aplicacion</label
+            >Aplicación</label
           >
         </div>
         <select
@@ -20,8 +20,8 @@
           [(ngModel)]="aplicacionSeleccionada"
         >
           <option selected>Selecciona...</option>
-          <option *ngFor="let item of listAplicaciones" [value]="item.nombreAplicacion">
-            {{ item.nombreAplicacion }}
+          <option *ngFor="let aplicacion of listAplicaciones" [value]="aplicacion.nombreAplicacion">
+            {{ aplicacion.nombreAplicacion }}
           </option>
         </select>
       </div>
@@ -40,7 +40,7 @@
     <div class="col-sm-6">
       <div class="row torre-input-div">
         <label class="input-group-text" for="i-transaccion-registro-transaccion"
-          >Transaccion</label
+          >Transacción</label
         >
         <input
           class="form-control torre-input"
@@ -59,7 +59,7 @@
         class="btn btn-primary"
         (click)="onCrearTransaccion()"
       >
-        Grabar Transaccion
+        Grabar Transacción
       </button>
     </div>
     <div class="col-4"></div>
