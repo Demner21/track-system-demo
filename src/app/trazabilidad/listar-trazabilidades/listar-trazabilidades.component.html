@@ -58,9 +58,10 @@
         </div>
         <select class="custom-select aplicacion-input-traz" id="inputGroupSelect01">
           <option selected>Selecciona...</option>
-          <option value="1">TRX_1</option>
-          <option value="2">TRX_2</option>
-          <option value="3">TRX_3</option>
+          <option *ngFor="let transaccion of listaTransacciones"
+          [value]="transaccion.transaccionValor">
+            {{transaccion.transaccionValor}}
+          </option>
         </select>
       </div>
     </div>

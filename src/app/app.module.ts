@@ -1,3 +1,4 @@
+import { TrazabiliadService } from './services/trazabilidad.service';
 import { SupplierDataService } from './services/supplier.data.service';
 import { TransaccionComponent } from './transaccion/transaccion.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +36,11 @@ import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilida
     NgbModule,
     FormsModule
   ],
-  providers: [TransaccionService,SupplierDataService],
+  providers: [
+    TransaccionService,
+    SupplierDataService,
+    TrazabiliadService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

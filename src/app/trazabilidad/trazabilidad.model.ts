@@ -1,4 +1,4 @@
-export class Trazabiliad {
+export class Trazabilidad {
 
   constructor(
     private aplicacion: string,

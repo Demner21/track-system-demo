@@ -14,22 +14,36 @@
             >Aplicación</label
           >
         </div>
-        <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion" [(ngModel)]="selectedValue">
+        <select class="custom-select aplicacion-input-traz"
+                id="i-traz-aplicacion"
+                [(ngModel)]="nombreAplicacion">
           <option selected>Selecciona...</option>
-          <option *ngFor="let item of listAplicaciones" [value]="item.value">{{item.nombreAplicacion}}</option>
+          <option *ngFor="let item of listAplicaciones"
+                  [value]="item.value">
+                  {{item.nombreAplicacion}}
+          </option>
         </select>
       </div>
       <div class="row traz-input-div">
         <label class="input-group-text" for="ex2">Código proyecto</label>
-        <input class="form-control traz-input" id="ex2" type="text" />
+        <input class="form-control traz-input"
+               id="ex2"
+               type="text"
+               [(ngModel)]="codigoProyecto"/>
       </div>
       <div class="row traz-input-div">
         <label class="input-group-text" for="ex2">Torre solicitante</label>
-        <input class="form-control traz-input" id="ex2" type="text" />
+        <input class="form-control traz-input"
+               id="ex2"
+               type="text"
+               [(ngModel)]="torreValor" />
       </div>
       <div class="row traz-input-div">
         <label class="input-group-text" for="ex2">Descripción de proyecto</label>
-        <textarea class="form-control traz-text-area" id="ex2"  rows="4"></textarea>
+        <textarea class="form-control traz-text-area"
+                  id="ex2"
+                  rows="4"
+                  [(ngModel)]="descripcionProyecto"></textarea>
       </div>
     </div>
     <div class="col-sm-6">
@@ -52,19 +66,21 @@
       </div>
       <div class="row traz-input-div">
         <label class="input-group-text" for="exampleFormControlTextarea1">Descripción del cambio en la transacción</label>
-        <textarea class="form-control traz-text-area" id="exampleFormControlTextarea1"  rows="3"></textarea>
+        <textarea class="form-control traz-text-area"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  [(ngModel)]="descripcionCambioTransaccion"></textarea>
       </div>
       <div class="row traz-input-div custom-file">
         <label class="custom-file-label" for="customFileLang" >Adjuntar documentación</label>
         <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-4"></div>
     <div class="col btn-grabar-transaccion">
-      <button type="submit" class="btn btn-primary">Grabar Trazabilidad</button>
+      <button type="submit" class="btn btn-primary" (click)="onCreateTrazabilidad()" >Grabar Trazabilidad</button>
     </div>
     <div class="col-4"></div>
   </div>
