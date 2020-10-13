@@ -43,10 +43,10 @@
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Componente</label>
                 </div>
                 <select class="custom-select tipo-compont-input-traz" id="inputGroupSelect01"
-                    [(ngModel)]="transaccionSeleccionada">
+                    [(ngModel)]="tipoComponenteSeleccionado">
                     <option selected>Selecciona...</option>
-                    <option *ngFor="let transaccion of listaTransacciones" [value]="transaccion.transaccionValor">
-                        {{transaccion.transaccionValor}}
+                    <option *ngFor="let tipoComponente of listaTipoComponentes" [value]="tipoComponente">
+                        {{tipoComponente}}
                     </option>
                 </select>
             </div>

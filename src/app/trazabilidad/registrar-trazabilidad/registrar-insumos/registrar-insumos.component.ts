@@ -11,6 +11,8 @@ export class RegistrarInsumosComponent implements OnInit {
   nombreAplicacion:string='';
   codigoProyecto:string='';
   transaccionSeleccionada:string='';
+  tipoComponenteSeleccionado:string='';
+  listaTipoComponentes=['STORE PROCEDURE', 'WEB SERVICE'];
 
   constructor(private supplierData:SupplierDataService,
               private transaccionService:TransaccionService) { }
@@ -21,6 +23,6 @@ export class RegistrarInsumosComponent implements OnInit {
     this.listaTransacciones=this.transaccionService.listaTransacciones;
   }
   onAgregarTrazabilidadInsumo(){
-    
+
   }
 }
