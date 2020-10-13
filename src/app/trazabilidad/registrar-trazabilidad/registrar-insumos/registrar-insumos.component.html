@@ -22,7 +22,7 @@
             </div>
             <div class="row traz-input-div">
                 <label class="input-group-text" for="ex2">Código proyecto</label>
-                <input class="form-control traz-input" id="ex2" type="text" [(ngModel)]="codigoProyecto" />
+                <input class="form-control codigo-proyecto-input" id="ex2" type="text" [(ngModel)]="codigoProyecto" />
             </div>
         </div>
         <div class="col-sm-6">
@@ -42,7 +42,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Componente</label>
                 </div>
-                <select class="custom-select aplicacion-input-traz" id="inputGroupSelect01"
+                <select class="custom-select tipo-compont-input-traz" id="inputGroupSelect01"
                     [(ngModel)]="transaccionSeleccionada">
                     <option selected>Selecciona...</option>
                     <option *ngFor="let transaccion of listaTransacciones" [value]="transaccion.transaccionValor">
@@ -55,7 +55,7 @@
 </div>
 <div class="row">
     <div class="col-4"></div>
-    <div class="col btn-grabar-transaccion">
+    <div class="col btn-submit">
         <button type="submit" class="btn btn-primary" (click)="onAgregarTrazabilidadInsumo()">Agregar</button>
     </div>
     <div class="col-4"></div>

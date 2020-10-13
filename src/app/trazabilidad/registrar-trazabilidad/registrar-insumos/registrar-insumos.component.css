@@ -1,6 +1,14 @@
 .aplicacion-input-traz{
-    width: 60%;
+    width: 52%;
     margin-left: 88px;
+  }
+  .tipo-compont-input-traz{
+    width: 52%;
+    margin-left: 28px;
+  }
+  .codigo-proyecto-input{
+    width: 52%;
+    margin-left: 43px;
   }
   .traz-input-div{
     margin-top: 20px
@@ -9,7 +17,7 @@
     width: 60%;
     margin-left: 44px;
   }
-  .btn-grabar-transaccion{
+  .btn-submit{
     margin-top: 13px;
     margin-left: 52px;
   }
@@ -17,5 +25,4 @@
     margin-top: 14px;
     width: 92%;
   }
-  
-  
+
