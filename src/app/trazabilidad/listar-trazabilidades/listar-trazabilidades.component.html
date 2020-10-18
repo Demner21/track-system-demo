@@ -14,7 +14,7 @@
       <tbody>
         <tr *ngFor="let trazabilidad of listaTranzabilidades; index as i">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{ trazabilidad.aplicacion | number }}</td>
+          <td>{{  buscarAplicacionPorId(trazabilidad.aplicacion) }}</td>
           <td>{{ trazabilidad.proyecto.codigo }}</td>
           <td>{{ trazabilidad.transaccion }}</td>
           <td>07/10/2020</td>
@@ -39,9 +39,14 @@
             >Aplicacion</label
           >
         </div>
-        <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion" [(ngModel)]="selectedValue">
+        <select class="custom-select aplicacion-input-traz" 
+                id="i-traz-aplicacion" 
+                [(ngModel)]="selectedValue">
           <option selected>Selecciona...</option>
-          <option *ngFor="let item of listAplicaciones" [value]="item.value">{{item.nombreAplicacion}}</option>
+          <option *ngFor="let item of listAplicaciones" 
+                  [value]="item.value">
+                  {{item.nombreAplicacion}}
+          </option>
         </select>
       </div>
       <div class="row traz-input-div">

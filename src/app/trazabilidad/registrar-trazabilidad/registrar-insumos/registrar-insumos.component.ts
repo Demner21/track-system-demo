@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { map } from 'rxjs/operators';
+import { Aplicacion } from 'src/app/model/aplicacion.model';
 
 @Component({
   selector: 'app-registrar-insumos',
@@ -23,7 +24,7 @@ export class RegistrarInsumosComponent implements OnInit {
   codAplicacionDefault:string='1';
   transaccionSeleccionada:string='';
   tipoComponente:string='';
-  listAplicaciones:any;
+  listAplicaciones:Aplicacion[];
   listaTransacciones:any;
   listaTipoComponentes=['STORE PROCEDURE', 'WEB SERVICE'];
 

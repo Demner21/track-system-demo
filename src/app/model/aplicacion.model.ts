@@ -1,4 +1,4 @@
 export class Aplicacion{
-    constructor(private idAplicacion:string ,
-                private nombreAplicacion:string){}
+    constructor(public idAplicacion:string ,
+                public nombreAplicacion:string){}
 }

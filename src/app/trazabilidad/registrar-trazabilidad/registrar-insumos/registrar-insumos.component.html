@@ -19,7 +19,8 @@
             [ngModel]="codAplicacionDefault"
             name="nombreAplicacion"
           >
-            <option *ngFor="let item of listAplicaciones" [value]="item.value">
+            <option *ngFor="let item of listAplicaciones" 
+                    [value]="item.idAplicacion">
               {{ item.nombreAplicacion }}
             </option>
           </select>

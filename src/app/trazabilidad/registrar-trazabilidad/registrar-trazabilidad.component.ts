@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
 import { Trazabilidad } from '../trazabilidad.model';
 import { map } from 'rxjs/operators';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registrar-trazabilidad',
@@ -11,18 +12,16 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./registrar-trazabilidad.component.css']
 })
 export class RegistrarTrazabilidadComponent implements OnInit {
-  nombreAplicacion = '';
-  codigoProyecto = '';
-  torreValor = '';
-  descripcionProyecto = '';
-  transaccionSeleccionada = '';
-  descripcionCambioTransaccion = '';
+  @ViewChild('form', { static: false }) signupForm: NgForm;
 
+  nombreAplicacion = '';
+  transaccionSeleccionada = '';
   listaTransacciones: any;
   listAplicaciones: any;
+  
   constructor(private supplierDataService: SupplierDataService,
     private transaccionService: TransaccionService,
-    private trazabilidadService: TrazabiliadService) { }
+    private trazabilidadService: TrazabiliadService) {}
 
   ngOnInit(): void {
     this.listAplicaciones = this.supplierDataService.listAplicaciones;
@@ -42,11 +41,16 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   }
 
   onCreateTrazabilidad(): void {
+    console.log( this.transaccionSeleccionada);
     this.trazabilidadService.crearTrazabilidad(
       new Trazabilidad(
-        this.nombreAplicacion, this.transaccionSeleccionada, this.torreValor,
-        { codigo: this.codigoProyecto, descripcion: this.descripcionProyecto }, null)
+        this.nombreAplicacion, 
+        this.transaccionSeleccionada, 
+        this.signupForm.value.torreValor,
+        { codigo: this.signupForm.value.codigoProyecto,
+           descripcion: this.signupForm.value.descripcionProyecto }, null)
     );
+    this.signupForm.reset();
   }
 
 }
