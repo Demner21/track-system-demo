@@ -1,4 +1,6 @@
 export class Transaccion{
 
-  constructor(private aplicacionSeleccionada: string ,private torreValor : string , private transaccionValor: string){}
+  constructor(public aplicacionSeleccionada: string ,
+              public torreValor : string , 
+              public transaccionValor: string){}
 }
