@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransaccionService } from 'src/app/services/transaccion.service';
-import { Transaccion } from '../transaccion.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-listar-transacciones',
@@ -9,12 +9,24 @@ import { Transaccion } from '../transaccion.model';
 })
 export class ListarTransaccionesComponent implements OnInit {
   featurePage: string;
-  listaTransacciones:Transaccion[];
+  listaTransacciones:any;
 
   constructor(private transaccionService:TransaccionService ) { }
 
   ngOnInit(): void {
-    this.listaTransacciones= this.transaccionService.listaTransacciones;
+    this.cargarListaTransacciones()
   }
 
+  private cargarListaTransacciones() {
+    this.transaccionService.getAll()
+                           .snapshotChanges()
+                           .pipe( map(changes => 
+                                changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+    ).subscribe(
+      data => {
+        this.listaTransacciones = data;
+      }
+    );
+  }
+  
 }

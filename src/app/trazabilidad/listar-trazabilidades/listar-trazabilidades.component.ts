@@ -14,8 +14,8 @@ export class ListarTrazabilidadesComponent implements OnInit {
   listaTranzabilidades: Trazabilidad[]=[];
   selectedValue='';
 
-  listAplicaciones=[];
-  listaTransacciones:Transaccion[]=[];
+  listAplicaciones:any;
+  listaTransacciones:any;
 
   constructor(private supplierDataService:SupplierDataService,
               private trazabilidadService: TrazabiliadService,

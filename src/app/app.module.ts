@@ -17,6 +17,8 @@ import { DropdownDirective } from './directives/dropdown.directive';
 import { ListarTransaccionesComponent } from './transaccion/listar-transacciones/listar-transacciones.component';
 import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilidades/listar-trazabilidades.component';
 import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad/registrar-insumos/registrar-insumos.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     TransaccionService,

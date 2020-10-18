@@ -15,7 +15,7 @@ export class RegistrarTransaccionComponent implements OnInit {
   torreValor:string='';
   transaccionValor:string='';
 
-  listAplicaciones=[];
+  listAplicaciones:any;
 
   constructor(private registrarTransaccionService:TransaccionService,
               private supplierDataService: SupplierDataService) { }

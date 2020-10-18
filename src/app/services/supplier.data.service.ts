@@ -1,9 +1,14 @@
-export class SupplierDataService{
-  listAplicaciones=[
-    {value:'1', nombreAplicacion:'SIAC UNICO'},
-    {value:'2', nombreAplicacion:'SISACT'},
-    {value:'3', nombreAplicacion:'SIGEX'},
-    {value:'4', nombreAplicacion:'STEAM'},
-    {value:'5', nombreAplicacion:'STEAM-2'}
-  ];
+import { Aplicacion }  from '../model/aplicacion.model'
+
+
+
+export class SupplierDataService {
+  listAplicaciones: Aplicacion[]=null;
+
+  constructor() {
+    this.listAplicaciones =[
+      new Aplicacion('1','SIAC UNICO'),
+      new Aplicacion('2','SISACT'),
+    ];
+  }
 }

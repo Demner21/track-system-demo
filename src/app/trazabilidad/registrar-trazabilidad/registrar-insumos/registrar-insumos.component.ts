@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registrar-insumos',
@@ -22,8 +23,8 @@ export class RegistrarInsumosComponent implements OnInit {
   codAplicacionDefault:string='1';
   transaccionSeleccionada:string='';
   tipoComponente:string='';
-  listAplicaciones=[];
-  listaTransacciones=[];
+  listAplicaciones:any;
+  listaTransacciones:any;
   listaTipoComponentes=['STORE PROCEDURE', 'WEB SERVICE'];
 
   constructor(private supplierData:SupplierDataService,
@@ -32,7 +33,20 @@ export class RegistrarInsumosComponent implements OnInit {
 
   ngOnInit(): void {
     this.listAplicaciones=this.supplierData.listAplicaciones;
-    this.listaTransacciones=this.transaccionService.listaTransacciones;
+    this.cargarListaTransacciones();
+  }
+
+  cargarListaTransacciones() {
+    this.transaccionService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.listaTransacciones = data;
+      console.log('lista de aplicaciones cargada'+ this.listaTransacciones);
+    });
   }
 
   onAgregarTrazabilidadInsumo(){
