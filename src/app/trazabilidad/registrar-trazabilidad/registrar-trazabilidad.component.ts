@@ -36,12 +36,12 @@ export class RegistrarTrazabilidadComponent implements OnInit {
     ).subscribe(
       data => {
         this.listaTransacciones = data;
+        console.log(this.listaTransacciones);
       }
     );
   }
 
   onCreateTrazabilidad(): void {
-    console.log( this.transaccionSeleccionada);
     this.trazabilidadService.crearTrazabilidad(
       new Trazabilidad(
         this.nombreAplicacion, 

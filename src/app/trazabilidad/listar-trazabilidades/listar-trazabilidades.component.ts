@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./listar-trazabilidades.component.css']
 })
 export class ListarTrazabilidadesComponent implements OnInit {
-  listaTranzabilidades: any;
+  listaTrazabilidades: any;
   selectedValue='';
 
   listAplicaciones:any;
@@ -34,7 +34,7 @@ export class ListarTrazabilidadesComponent implements OnInit {
                                 changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
     ).subscribe(
       data => {
-        this.listaTranzabilidades = data;
+        this.listaTrazabilidades = data;
       }
     );
   }
@@ -54,5 +54,5 @@ export class ListarTrazabilidadesComponent implements OnInit {
   buscarAplicacionPorId(idAplicacion:string){
     return this.supplierDataService.buscarAplicacionPorId(idAplicacion);
   }
-
+  
 }

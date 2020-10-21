@@ -19,6 +19,7 @@ import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilida
 import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad/registrar-insumos/registrar-insumos.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { GestionTrazabilidadComponent } from './trazabilidad/gestion-trazabilidad/gestion-trazabilidad.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { environment } from 'src/environments/environment';
     DropdownDirective,
     ListarTransaccionesComponent,
     ListarTrazabilidadesComponent,
-    RegistrarInsumosComponent
+    RegistrarInsumosComponent,
+    GestionTrazabilidadComponent
   ],
   imports: [
     BrowserModule,

@@ -5,21 +5,20 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 @Injectable({
   providedIn: 'root',
 })
-export class TransaccionService{
+export class TransaccionService {
 
-  private dbPath: string= 'listaTransacciones';
+  private dbPath: string = 'listaTransacciones';
   listaTransacciones: AngularFireList<Transaccion> = null;
 
-  registrarTransaccion(transaccionData:Transaccion){
+  registrarTransaccion(transaccionData: Transaccion) {
     this.listaTransacciones.push(transaccionData);
   }
 
-  constructor(private db: AngularFireDatabase){
-    this.listaTransacciones=db.list(this.dbPath);
+  constructor(private db: AngularFireDatabase) {
+    this.listaTransacciones = this.db.list(this.dbPath);
   }
 
-  getAll(){
+  getAll() {
     return this.listaTransacciones;
   }
-
 }
