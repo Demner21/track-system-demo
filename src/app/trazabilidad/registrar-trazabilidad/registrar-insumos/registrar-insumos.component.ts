@@ -17,7 +17,8 @@ export class RegistrarInsumosComponent implements OnInit {
     nombreAplicacion:'',
     codigoProyecto:'',
     transaccion:'',
-    tipoComponenteSeleccionado:''
+    listaComponenteSP:[],
+    listaComponenteWS:[]
   };
   submitted = false;
 
@@ -27,7 +28,32 @@ export class RegistrarInsumosComponent implements OnInit {
   listAplicaciones:Aplicacion[];
   listaTransacciones:any;
   listaTipoComponentes=['STORE PROCEDURE', 'WEB SERVICE'];
+  listaComponenteSP:{
+    nombreComponente:string,
+    baseDatos:string,
+    nombreUsuario:string,
+    funcionalidad:string,
+    tipoComponente:string
+  }[]=[];
+  tipoComponenteSP:{
+    nombreComponente:string,
+    baseDatos:string,
+    nombreUsuario:string,
+    funcionalidad:string,
+    tipoComponente:string
+  }=null;
+  listaComponenteWS:{
+    nombreComponente:string,
+    urlApi:string,
+    tipoComponente:string
+  }[]=[];
+  tipoComponenteWS:{
+    nombreComponente:string,
+    urlApi:string,
+    tipoComponente:string
+  };
 
+  listaComponentes:{nombreComponente:string, tipoComponente:string}[]=[];
   constructor(private supplierData:SupplierDataService,
     private transaccionService:TransaccionService) { }
 
@@ -35,6 +61,7 @@ export class RegistrarInsumosComponent implements OnInit {
   ngOnInit(): void {
     this.listAplicaciones=this.supplierData.listAplicaciones;
     this.cargarListaTransacciones();
+
   }
 
   cargarListaTransacciones() {
@@ -51,11 +78,40 @@ export class RegistrarInsumosComponent implements OnInit {
   }
 
   onAgregarTrazabilidadInsumo(){
-    this.submitted = true;
+   this.submitted = true;
    this.insumo.nombreAplicacion= this.signupForm.value.nombreAplicacion;
    this.insumo.codigoProyecto= this.signupForm.value.codigoProyecto;
    this.insumo.transaccion=this.signupForm.value.transaccion;
-   this.insumo.tipoComponenteSeleccionado=this.signupForm.value.tipoComponenteSeleccionado;
+   this.insumo.listaComponenteSP=this.listaComponenteSP;
+   this.insumo.listaComponenteWS=this.listaComponenteWS;
+   
+   console.log(this.insumo);
    this.signupForm.reset();
+   this.listaComponentes=null;
   }
+  agregarComponente(){
+    this.listaComponentes.push(
+      {
+        nombreComponente:this.signupForm.value.nombreComponente,
+        tipoComponente:this.tipoComponente
+      }
+    );
+    if (this.tipoComponente==='STORE PROCEDURE') {
+      this.listaComponenteSP.push({
+        nombreComponente:this.signupForm.value.nombreComponente,
+        baseDatos:this.signupForm.value.baseDatos,
+        nombreUsuario:this.signupForm.value.nombreUsuario,
+        funcionalidad:this.signupForm.value.funcionalidad,
+        tipoComponente:this.tipoComponente
+      });
+    }
+    if (this.tipoComponente==='WEB SERVICE') {
+      this.listaComponenteWS.push({
+        nombreComponente:this.signupForm.value.nombreComponente,
+        urlApi:this.signupForm.value.urlApi,
+        tipoComponente:this.tipoComponente
+      });
+    }
+    this.tipoComponente='';
+  }  
 }
