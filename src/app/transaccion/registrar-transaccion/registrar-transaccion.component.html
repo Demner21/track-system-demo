@@ -6,6 +6,7 @@
     </div>
     <div class="col"></div>
   </div>
+  <form (ngSubmit)="onCrearTransaccion()" #form="ngForm">
   <div class="row">
     <div class="col-sm-6">
       <div class="row">
@@ -18,6 +19,8 @@
           class="custom-select aplicacion-input"
           id="inputGroupSelect01"
           [(ngModel)]="aplicacionSeleccionada"
+          name="aplicacionSeleccionada"
+          required
         >
           <option selected>Selecciona...</option>
           <option *ngFor="let aplicacion of listAplicaciones" [value]="aplicacion.nombreAplicacion">
@@ -34,6 +37,8 @@
           id="i-torre-registro-transaccion"
           type="text"
           [(ngModel)]="torreValor"
+          name="torreValor"
+          required
         />
       </div>
     </div>
@@ -47,6 +52,8 @@
           id="i-transaccion-registro-transaccion"
           type="text"
           [(ngModel)]="transaccionValor"
+          name="transaccionValor"
+          required
         />
       </div>
     </div>
@@ -57,11 +64,12 @@
       <button
         type="submit"
         class="btn btn-primary"
-        (click)="onCrearTransaccion()"
+        [disabled]="!form.valid"
       >
         Grabar Transacción
       </button>
     </div>
     <div class="col-4"></div>
   </div>
+</form>
 </div>
