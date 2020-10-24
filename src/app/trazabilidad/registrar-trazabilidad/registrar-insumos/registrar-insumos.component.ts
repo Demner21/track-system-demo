@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
+import { InsumoService } from 'src/app/services/insumo.service';
 import { map } from 'rxjs/operators';
 import { Aplicacion } from 'src/app/model/aplicacion.model';
 
@@ -55,7 +56,8 @@ export class RegistrarInsumosComponent implements OnInit {
 
   listaComponentes:{nombreComponente:string, tipoComponente:string}[]=[];
   constructor(private supplierData:SupplierDataService,
-    private transaccionService:TransaccionService) { }
+    private transaccionService:TransaccionService,
+    private insumoService: InsumoService) { }
 
 
   ngOnInit(): void {
@@ -86,6 +88,7 @@ export class RegistrarInsumosComponent implements OnInit {
    this.insumo.listaComponenteWS=this.listaComponenteWS;
    
    console.log(this.insumo);
+   this.insumoService.crearInsumo(this.insumo);
    this.signupForm.reset();
    this.listaComponentes=null;
   }
