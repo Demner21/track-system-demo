@@ -17,10 +17,12 @@
                   id="i-traz-aplicacion" 
                   [(ngModel)]="nombreAplicacion"
                   name="nombreAplicacion"
+                  (change)="getAplicacionForGetTransaccion()"
                   required>
             <option selected>Selecciona...</option>
             <option *ngFor="let item of listAplicaciones"
-                    [value]="item.idAplicacion">
+                    [value]="item.idAplicacion"
+                    >
                     {{item.nombreAplicacion}}
             </option>
           </select>
@@ -63,7 +65,7 @@
                   [(ngModel)]="transaccionSeleccionada"
                   name="transaccionSeleccionada"
                   required>
-            <option *ngFor="let transaccion of listaTransacciones" 
+            <option *ngFor="let transaccion of subListaTransacciones" 
                     [value]="transaccion.transaccionValor">
                       {{transaccion.transaccionValor}}
             </option>

@@ -17,6 +17,7 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   nombreAplicacion = '';
   transaccionSeleccionada = '';
   listaTransacciones: any;
+  subListaTransacciones:any;
   listAplicaciones: any;
   
   constructor(private supplierDataService: SupplierDataService,
@@ -51,6 +52,15 @@ export class RegistrarTrazabilidadComponent implements OnInit {
            descripcion: this.signupForm.value.descripcionProyecto }, null)
     );
     this.signupForm.reset();
+  }
+
+  getAplicacionForGetTransaccion(){
+    console.log("metodo lanzado para buscar transaccion de "+this.nombreAplicacion)
+    console.log(this.listaTransacciones);
+
+    const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.nombreAplicacion);
+    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
+    console.log(this.subListaTransacciones);
   }
 
 }
