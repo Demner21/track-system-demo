@@ -71,8 +71,8 @@ export class GestionTrazabilidadComponent implements OnInit {
     
      this.subListaTrazabilidades = this.listaTrazabilidades
       .filter(traz => traz.aplicacion === this.trazabilidadSearch.idAplicacion 
-                      && (traz.proyecto.codigo === this.trazabilidadSearch.codigoProyecto || 
-                          traz.transaccion===this.trazabilidadSearch.transaccion.transaccionValor))
+                      && (traz.transaccion===this.trazabilidadSearch.transaccion.transaccionValor ||
+                          traz.proyecto.codigo === this.trazabilidadSearch.codigoProyecto  ))
 
 
     console.log(this.subListaTrazabilidades);

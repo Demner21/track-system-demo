@@ -20,6 +20,8 @@ import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { GestionTrazabilidadComponent } from './trazabilidad/gestion-trazabilidad/gestion-trazabilidad.component';
+import { AplicacionComponent } from './aplicacion/aplicacion.component';
+import { ListarAplicacionesComponent } from './aplicacion/listar-aplicaciones/listar-aplicaciones.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { GestionTrazabilidadComponent } from './trazabilidad/gestion-trazabilida
     ListarTransaccionesComponent,
     ListarTrazabilidadesComponent,
     RegistrarInsumosComponent,
-    GestionTrazabilidadComponent
+    GestionTrazabilidadComponent,
+    AplicacionComponent,
+    ListarAplicacionesComponent
   ],
   imports: [
     BrowserModule,

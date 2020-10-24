@@ -18,6 +18,16 @@
         <a class="nav-link dropdown-toggle"
         (click)="isCollapsed = true"
         [ngStyle]="{'cursor': 'pointer'}"
+        id="navbarDropdownAplicacion" ngbDropdownToggle>Aplicación</a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownAplicacion">
+          <a ngbDropdownItem [routerLink]="'/registarAplicaciones'" (click)="onLoadPage()">Registrar</a>
+          <a ngbDropdownItem [routerLink]="'/listarAplicaciones'" (click)="onLoadPage()">Ver todas</a>
+        </div>
+      </li>
+      <li class="nav-item" ngbDropdown >
+        <a class="nav-link dropdown-toggle"
+        (click)="isCollapsed = true"
+        [ngStyle]="{'cursor': 'pointer'}"
         id="navbarDropdownTransaccion" ngbDropdownToggle>Transacciones</a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdownTransaccion">
           <a ngbDropdownItem [routerLink]="'/registarTansaccion'" (click)="onLoadPage()">Registrar</a>
