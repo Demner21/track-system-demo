@@ -81,7 +81,7 @@ export class LineChartTrazabilidadComponent implements OnInit {
 
     console.log(arrayData);
     this.lineChartData=[
-      { data: arrayData, label: 'cantidad de transacciones por torre' }
+      { data: arrayData, label: 'historial de trazabilidades' }
      
     ];
 
