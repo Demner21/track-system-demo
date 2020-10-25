@@ -4,6 +4,9 @@ import { map } from 'rxjs/operators';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { NgForm } from '@angular/forms';
 import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-gestion-trazabilidad',
@@ -13,11 +16,15 @@ import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
 export class GestionTrazabilidadComponent implements OnInit {
   listaTrazabilidades = [];
   subListaTrazabilidades: any[];
+  trazabilidadForModal: any=null;
+  subListaTransacciones: any;
 
   constructor(
     private supplierDataService: SupplierDataService,
     private transaccionService: TransaccionService,
-    private trazabilidadService: TrazabiliadService) { }
+    private trazabilidadService: TrazabiliadService,
+    private modalService: NgbModal,
+    private storage: AngularFireStorage) { }
 
   @ViewChild('form', { static: false }) gestionTrazabilidadForm: NgForm;
 
@@ -86,5 +93,42 @@ export class GestionTrazabilidadComponent implements OnInit {
   validacionformulario(){
     return !this.gestionTrazabilidadForm.valid 
   }
-  
+  openModalTrazabilidadDetalle(content, trazabilidad){
+    this.trazabilidadForModal=trazabilidad;
+    const ref = this.storage.ref(this.trazabilidadForModal.urlDocumento);
+    this.profileUrl = ref.getDownloadURL();
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+      .result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+
+  }
+  closeResult = '';
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  profileUrl: Observable<string | null>;
+
+  descargarArchivo(urlArchivo:string){
+    console.log("archivo a buscar:" + urlArchivo);
+    const ref = this.storage.ref(urlArchivo);
+    this.profileUrl = ref.getDownloadURL();
+  }
+  getAplicacionForGetTransaccion(){
+    console.log("metodo lanzado para buscar transaccion de "+this.idAplicacion)
+    console.log(this.listaTransacciones);
+
+    const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.idAplicacion);
+    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
+    console.log(this.subListaTransacciones);
+  }
 }

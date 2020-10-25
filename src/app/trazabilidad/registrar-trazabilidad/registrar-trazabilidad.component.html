@@ -83,7 +83,17 @@
         </div>
         <div class="row traz-input-div custom-file">
           <label class="custom-file-label" for="customFileLang">Adjuntar documentación</label>
-          <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+          <input type="file" 
+                 class="custom-file-input" 
+                 id="customFileLang" 
+                 lang="es"
+                 (change)="uploadFile($event)">
+          <div>{{ uploadPercent | async }}</div>
+          <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+          <progress max="100" [value]="(uploadPercent | async)"></progress>
+          <div class="result" *ngIf="downloadURL | async; let uploadSrc">
+            <a [href]="uploadSrc">You just uploaded this file!</a>
+          </div>
         </div>
       </div>
     </div>

@@ -18,10 +18,13 @@ import { ListarTransaccionesComponent } from './transaccion/listar-transacciones
 import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilidades/listar-trazabilidades.component';
 import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad/registrar-insumos/registrar-insumos.component';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { GestionTrazabilidadComponent } from './trazabilidad/gestion-trazabilidad/gestion-trazabilidad.component';
 import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { ListarAplicacionesComponent } from './aplicacion/listar-aplicaciones/listar-aplicaciones.component';
+import { GetFileComponentComponent } from './get-file-component/get-file-component.component';
+import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 
 
 @NgModule({
@@ -38,14 +41,17 @@ import { ListarAplicacionesComponent } from './aplicacion/listar-aplicaciones/li
     RegistrarInsumosComponent,
     GestionTrazabilidadComponent,
     AplicacionComponent,
-    ListarAplicacionesComponent
+    ListarAplicacionesComponent,
+    GetFileComponentComponent,
+    IniciarSesionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   providers: [
     TransaccionService,

@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
+import { UploadService } from 'src/app/services/upload.service';
 import { Trazabilidad } from '../trazabilidad.model';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-registrar-trazabilidad',
@@ -19,10 +22,16 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   listaTransacciones: any;
   subListaTransacciones:any;
   listAplicaciones: any;
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  listaDocumentacion: { nombreDocumento: string , urlDocumento:string}[]=[];
+  nameOfFile: any;
   
   constructor(private supplierDataService: SupplierDataService,
     private transaccionService: TransaccionService,
-    private trazabilidadService: TrazabiliadService) {}
+    private trazabilidadService: TrazabiliadService,
+    private uploadService:UploadService,
+    private storage: AngularFireStorage) {}
 
   ngOnInit(): void {
     this.listAplicaciones = this.supplierDataService.listAplicaciones;
@@ -49,7 +58,7 @@ export class RegistrarTrazabilidadComponent implements OnInit {
         this.transaccionSeleccionada, 
         this.signupForm.value.torreValor,
         { codigo: this.signupForm.value.codigoProyecto,
-           descripcion: this.signupForm.value.descripcionProyecto }, null)
+           descripcion: this.signupForm.value.descripcionProyecto },  this.listaDocumentacion)
     );
     this.signupForm.reset();
   }
@@ -62,5 +71,27 @@ export class RegistrarTrazabilidadComponent implements OnInit {
     this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
     console.log(this.subListaTransacciones);
   }
+  uploadFile(event){
+    //this.uploadService.uploadFile(event);
+    //this.downloadURL=this.uploadService.downloadURL;
+    //this.uploadPercent= this.uploadService.uploadPercent;
+    
+    const file = event.target.files[0];
+    this.nameOfFile=file.name;
+    const filePath = '/upload/documents/'+this.nameOfFile;
+    const fileRef = this.storage.ref(filePath);
+    console.log("nombre de archivo ..." + file.name);
+    const task = this.storage.upload(filePath, file);
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+      finalize(
+        () => this.downloadURL = fileRef.getDownloadURL()
+       )
+      )
+      .subscribe()
 
+      this.listaDocumentacion.push({ nombreDocumento: this.nameOfFile , urlDocumento: filePath});
+  }
 }

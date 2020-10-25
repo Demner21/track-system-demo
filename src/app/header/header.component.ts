@@ -1,13 +1,20 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { SupplierDataService } from '../services/supplier.data.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
   isCollapsed: boolean;
-  constructor() { }
+  enableUser: boolean;
+  constructor(private supplierDataService: SupplierDataService) { }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.enableUser=this.supplierDataService.isEnabled();
+  }
+
 
   ngOnInit(): void {
     this.isCollapsed = true;
@@ -15,6 +22,8 @@ export class HeaderComponent implements OnInit {
 
   onLoadPage(){
     this.isCollapsed = true;
+    
   }
+  
 
 }

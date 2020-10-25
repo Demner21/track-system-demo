@@ -11,8 +11,9 @@
       <div class="col-sm-6">
         <div class="row">
           <label class="input-group-text" for="i-traz-aplicacion">Aplicación</label>
-          <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion" [ngModel]="codAplicacionDefault"
-            name="nombreAplicacion">
+          <select class="custom-select aplicacion-input-traz" id="i-traz-aplicacion"   [(ngModel)]="codAplicacionDefault"
+            name="nombreAplicacion"
+            (change)="getAplicacionForGetTransaccion()">
             <option *ngFor="let item of listAplicaciones" [value]="item.idAplicacion">
               {{ item.nombreAplicacion }}
             </option>
@@ -30,7 +31,7 @@
           <select class="custom-select aplicacion-input-traz" id="transaccionInput" name="transaccion"
             [ngModel]="transaccionSeleccionada">
             <option selected>Selecciona...</option>
-            <option *ngFor="let transaccion of listaTransacciones" [value]="transaccion.transaccionValor">
+            <option *ngFor="let transaccion of subListaTransacciones" [value]="transaccion.transaccionValor">
               {{ transaccion.transaccionValor }}
             </option>
           </select>

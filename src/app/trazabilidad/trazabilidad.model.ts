@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export class Trazabilidad {
 
   constructor(
@@ -5,7 +7,7 @@ export class Trazabilidad {
     private transaccion: string,
     private torre: string,
     private proyecto: { codigo: string, descripcion: string },
-    private documentacion: [{ nombreDocumento: string }]) {
+    private documentacion:{ nombreDocumento: string , urlDocumento:string} []) {
 
     };
 

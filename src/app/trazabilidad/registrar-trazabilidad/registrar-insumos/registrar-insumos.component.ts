@@ -55,6 +55,7 @@ export class RegistrarInsumosComponent implements OnInit {
   };
 
   listaComponentes:{nombreComponente:string, tipoComponente:string}[]=[];
+  subListaTransacciones: any;
   constructor(private supplierData:SupplierDataService,
     private transaccionService:TransaccionService,
     private insumoService: InsumoService) { }
@@ -117,4 +118,12 @@ export class RegistrarInsumosComponent implements OnInit {
     }
     this.tipoComponente='';
   }  
+  getAplicacionForGetTransaccion(){
+    console.log("metodo lanzado para buscar transaccion de "+this.codAplicacionDefault)
+    console.log(this.listaTransacciones);
+
+    const nombreAplicacion=this.supplierData.buscarAplicacionPorId(this.codAplicacionDefault);
+    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
+    console.log(this.subListaTransacciones);
+  }
 }

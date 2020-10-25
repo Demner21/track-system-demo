@@ -14,6 +14,9 @@
 
   <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/iniciarSesion'" (click)="isCollapsed = true">Iniciar sesión</a>
+      </li>
       <li class="nav-item" ngbDropdown >
         <a class="nav-link dropdown-toggle"
         (click)="isCollapsed = true"
@@ -28,7 +31,7 @@
         <a class="nav-link dropdown-toggle"
         (click)="isCollapsed = true"
         [ngStyle]="{'cursor': 'pointer'}"
-        id="navbarDropdownTransaccion" ngbDropdownToggle>Transacciones</a>
+        id="navbarDropdownTransaccion" ngbDropdownToggle >Transacciones</a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdownTransaccion">
           <a ngbDropdownItem [routerLink]="'/registarTansaccion'" (click)="onLoadPage()">Registrar</a>
           <a ngbDropdownItem [routerLink]="'/listarTransacciones'" (click)="onLoadPage()">Ver todas</a>
@@ -38,16 +41,13 @@
         <a class="nav-link dropdown-toggle"
         (click)="isCollapsed = true"
         [ngStyle]="{'cursor': 'pointer'}"
-        id="navbarDropdown" ngbDropdownToggle>Trazabilidad</a>
+        id="navbarDropdown" ngbDropdownToggle >Trazabilidad</a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown">
           <a ngbDropdownItem [routerLink]="'/registrarTrazabilidad'" (click)="onLoadPage()">Registrar Trazabilidades</a>
           <a ngbDropdownItem [routerLink]="'/registarInsumo'" (click)="onLoadPage()">Registrar Insumo</a>
           <a ngbDropdownItem [routerLink]="'/listarTrazabilidades'" (click)="onLoadPage()">Ver todas</a>
           <a ngbDropdownItem [routerLink]="'/gestionTrazabilidad'" (click)="onLoadPage()">Buscar Trazabilidades</a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="'/'" (click)="isCollapsed = true">Iniciar sesión</a>
       </li>
     </ul>
   </div>

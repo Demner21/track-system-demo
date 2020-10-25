@@ -10,6 +10,7 @@ import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad
 import { RegistrarTrazabilidadComponent } from './trazabilidad/registrar-trazabilidad/registrar-trazabilidad.component';
 import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { ListarAplicacionesComponent } from './aplicacion/listar-aplicaciones/listar-aplicaciones.component';
+import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 
 const routes: Routes = [
   { path:'registarTansaccion', component:RegistrarTransaccionComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path:'registarInsumo', component:RegistrarInsumosComponent},
   { path:'gestionTrazabilidad', component:GestionTrazabilidadComponent},
   { path:'registarAplicaciones', component:AplicacionComponent},
-  { path:'listarAplicaciones', component:ListarAplicacionesComponent}
+  { path:'listarAplicaciones', component:ListarAplicacionesComponent},
+  { path:'iniciarSesion', component:IniciarSesionComponent}
   
 ];
 

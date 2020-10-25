@@ -7,6 +7,7 @@ import { Aplicacion }  from '../model/aplicacion.model'
 })
 export class SupplierDataService {
   listAplicaciones: Aplicacion[]=null;
+  enableUser: boolean=false;
 
   constructor() {
     this.listAplicaciones =[
@@ -21,5 +22,9 @@ export class SupplierDataService {
                    app => app.idAplicacion === idAplicacion 
                   ).nombreAplicacion;
   }  
+
+  isEnabled():boolean{
+    return this.enableUser;
+  }
 
 }
