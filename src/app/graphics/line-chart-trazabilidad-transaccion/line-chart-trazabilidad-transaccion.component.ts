@@ -5,11 +5,12 @@ import { map } from 'rxjs/operators';
 import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
 
 @Component({
-  selector: 'app-line-chart-trazabilidad-proyecto',
-  templateUrl: './line-chart-trazabilidad-proyecto.component.html',
-  styleUrls: ['./line-chart-trazabilidad-proyecto.component.css']
+  selector: 'app-line-chart-trazabilidad-transaccion',
+  templateUrl: './line-chart-trazabilidad-transaccion.component.html',
+  styleUrls: ['./line-chart-trazabilidad-transaccion.component.css']
 })
-export class LineChartTrazabilidadProyectoComponent implements OnInit {
+export class LineChartTrazabilidadTransaccionComponent implements OnInit {
+
   listaTrazabilidades: any[];
   show: boolean=false;
 
@@ -33,7 +34,7 @@ export class LineChartTrazabilidadProyectoComponent implements OnInit {
 
   lineChartData: ChartDataSets[]=[] ;
 
-  lineChartLabels: Label[] =["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+  lineChartLabels: Label[] ;
 
   lineChartOptions = {
     responsive: true,
@@ -53,41 +54,44 @@ export class LineChartTrazabilidadProyectoComponent implements OnInit {
   
   mostrarTrazabilidades(){
     
-    //const firstMap= this.listaTrazabilidades.map(trazabilidad =>  new Date(trazabilidad.fechaCreacion) .toLocaleString('default', { month: 'long' }));
-    const nombreTransaccion='ESTADO DE CUENTA';
+    /**
+     *1- Extraer la lista de transacciones existentes de la lista de trazabilidad 
+     * 
+      */
+    const mapWithTransacciones= this.listaTrazabilidades.map(trazabilidad =>  trazabilidad.transaccion);
+    console.log("sublista: transacciones existentes de todas las trazabilidades")
+    console.log(mapWithTransacciones);
     
-    const subListaConTransaccion= this.listaTrazabilidades.filter(traz=> traz.transaccion===nombreTransaccion );
-    console.log("sublista: filtrada con nombreTransaccion")
-    console.log(subListaConTransaccion)
+    //2 - extraer nombres unicos
+    const tempTransacciones=                     [...new Set(mapWithTransacciones)];
+    console.log(tempTransacciones);
+    
+    for (let index = 0; index < tempTransacciones.length; index++) {
+      const nombreTransaccion = tempTransacciones[index];
+    
+      const subListaConTransaccion= this.listaTrazabilidades.filter(traz=> traz.transaccion===nombreTransaccion );
+      console.log("sublista: filtrada con nombreTransaccion")
+      console.log(subListaConTransaccion)
 
-    const mapWithCodigoProyectos= subListaConTransaccion
-                                        .map(trazabilidad =>  trazabilidad.proyecto.codigo);
-    
-    const tempMonth=                     [...new Set(mapWithCodigoProyectos)];
-    
-    console.log("tempMonth:")
-    console.log(tempMonth)
+      const mapWithCodigoProyectos= subListaConTransaccion.map(trazabilidad =>  new Date(trazabilidad.fechaCreacion).getMonth());
+      console.log("mapa de meses encontrado de la transaccion "+ nombreTransaccion);
+      console.log(mapWithCodigoProyectos);
 
-    for (let index = 0; index < tempMonth.length; index++) {
-      const proyecto = tempMonth[index];
-      console.log("iterando sobre proyecto"+ proyecto);
-      const mapWithMonths= subListaConTransaccion.filter(traz=> traz.proyecto.codigo===proyecto)
-                                              .map(trazabilidad =>  new Date(trazabilidad.fechaCreacion).getMonth());
-      
-      console.log("mapa de meses encontrado del proyecto"+ proyecto);
-      console.log(mapWithMonths);
-      
-      const mapReduce = mapWithMonths.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
+      const mapReduce = mapWithCodigoProyectos.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
+      console.log("mapReduce");
       console.log(mapReduce);
+
       const monthReduce =[ ...mapReduce.keys() ].sort();
-      
-      const monthsIndex = [0,1,2,3,4,5,6,7,8,9,10,11];
+      console.log("monthReduce");
+      console.log(monthReduce);
       let [min, max] = monthReduce.reduce(([prevMin,prevMax], curr)=>
       [Math.min(prevMin, curr), Math.max(prevMax, curr)], [Infinity, -Infinity]);
-
       console.log("Min:", min);
       console.log("Max:", max);
+
+      const monthsIndex = [0,1,2,3,4,5,6,7,8,9,10,11];
       const arrayData=[];
+
       for (let index = 0; index < monthsIndex.length; index++) {
         const month = monthsIndex[index];
         console.log("month analizado"+ month )
@@ -105,17 +109,15 @@ export class LineChartTrazabilidadProyectoComponent implements OnInit {
             console.log("a cero -->"+ month )
             arrayData[month]= 0;
           }
-          //arrayData[monthReduce[indexReduce]]= mapReduce.get(monthReduce[indexReduce]);
         }
       }
-      
-      
+
       console.log("arrayData");
       console.log(arrayData);
-
-      this.lineChartData.push( { data: arrayData, label: proyecto });
+      this.lineChartData.push( { data: arrayData, label: nombreTransaccion });
     }
-    this.lineChartLabels = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];;
+    
+    this.lineChartLabels = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
     this.show=true;
   }
 
