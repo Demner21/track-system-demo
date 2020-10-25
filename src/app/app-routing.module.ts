@@ -24,7 +24,6 @@ const routes: Routes = [
   { path:'listarAplicaciones', component:ListarAplicacionesComponent},
   { path:'iniciarSesion', component:IniciarSesionComponent},
   { path:'graphics', component:GraphicsComponent},
-  { path:'', component:GraphicsComponent}
   
 ];
 
