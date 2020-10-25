@@ -16,7 +16,7 @@
           <td>{{  buscarAplicacionPorId(trazabilidad.aplicacion) }}</td>
           <td>{{ trazabilidad.proyecto.codigo }}</td>
           <td>{{ trazabilidad.transaccion }}</td>
-          <td>07/10/2020</td>
+          <td>{{ transformToDate (trazabilidad.fechaCreacion)  | date:'medium' }}</td>
         </tr>
       </tbody>
   </table>

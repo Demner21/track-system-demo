@@ -11,6 +11,7 @@ import { RegistrarTrazabilidadComponent } from './trazabilidad/registrar-trazabi
 import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { ListarAplicacionesComponent } from './aplicacion/listar-aplicaciones/listar-aplicaciones.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
+import { GraphicsComponent } from './graphics/graphics.component';
 
 const routes: Routes = [
   { path:'registarTansaccion', component:RegistrarTransaccionComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path:'gestionTrazabilidad', component:GestionTrazabilidadComponent},
   { path:'registarAplicaciones', component:AplicacionComponent},
   { path:'listarAplicaciones', component:ListarAplicacionesComponent},
-  { path:'iniciarSesion', component:IniciarSesionComponent}
+  { path:'iniciarSesion', component:IniciarSesionComponent},
+  { path:'graphics', component:GraphicsComponent},
   
 ];
 

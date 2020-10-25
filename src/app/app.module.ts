@@ -25,6 +25,9 @@ import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { ListarAplicacionesComponent } from './aplicacion/listar-aplicaciones/listar-aplicaciones.component';
 import { GetFileComponentComponent } from './get-file-component/get-file-component.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
+import { GraphicsComponent } from './graphics/graphics.component';
+import { ChartsModule } from 'ng2-charts';
+import { GraphicsAplicacionComponent } from './graphics-aplicacion/graphics-aplicacion.component';
 
 
 @NgModule({
@@ -43,7 +46,9 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
     AplicacionComponent,
     ListarAplicacionesComponent,
     GetFileComponentComponent,
-    IniciarSesionComponent
+    IniciarSesionComponent,
+    GraphicsComponent,
+    GraphicsAplicacionComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
     NgbModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ChartsModule
   ],
   providers: [
     TransaccionService,

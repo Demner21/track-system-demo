@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prod": "ng build --prod --base-href=\"./\"" 
+    "prod": "ng build --prod --base-href=\"./\""
   },
   "private": true,
   "dependencies": {
@@ -24,7 +24,9 @@
     "@angular/router": "~10.0.5",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "bootstrap": "^4.5.0",
+    "chart.js": "^2.9.4",
     "firebase": "^7.24.0",
+    "ng2-charts": "^2.4.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

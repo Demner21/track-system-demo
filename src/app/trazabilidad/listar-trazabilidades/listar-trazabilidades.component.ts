@@ -54,5 +54,9 @@ export class ListarTrazabilidadesComponent implements OnInit {
   buscarAplicacionPorId(idAplicacion:string){
     return this.supplierDataService.buscarAplicacionPorId(idAplicacion);
   }
+
+  transformToDate(dateString:string){
+    return new Date(dateString);
+  }
   
 }

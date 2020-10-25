@@ -7,8 +7,8 @@ export class Trazabilidad {
     private transaccion: string,
     private torre: string,
     private proyecto: { codigo: string, descripcion: string },
-    private documentacion:{ nombreDocumento: string , urlDocumento:string} []) {
-
+    private documentacion:{ nombreDocumento: string , urlDocumento:string} [],
+    private fechaCreacion:string) {
     };
 
 

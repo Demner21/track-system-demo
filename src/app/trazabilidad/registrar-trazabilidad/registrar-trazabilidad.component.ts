@@ -52,13 +52,16 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   }
 
   onCreateTrazabilidad(): void {
+    var dateNow= new Date();
     this.trazabilidadService.crearTrazabilidad(
       new Trazabilidad(
         this.nombreAplicacion, 
         this.transaccionSeleccionada, 
         this.signupForm.value.torreValor,
         { codigo: this.signupForm.value.codigoProyecto,
-           descripcion: this.signupForm.value.descripcionProyecto },  this.listaDocumentacion)
+          descripcion: this.signupForm.value.descripcionProyecto },
+        this.listaDocumentacion,
+        dateNow.toISOString() )
     );
     this.signupForm.reset();
   }
