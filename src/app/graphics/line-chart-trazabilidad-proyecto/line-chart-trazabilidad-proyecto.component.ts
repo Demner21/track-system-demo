@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { map } from 'rxjs/operators';
+import { TransaccionService } from 'src/app/services/transaccion.service';
 import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
+import { Transaccion } from 'src/app/transaccion/transaccion.model';
 
 @Component({
   selector: 'app-line-chart-trazabilidad-proyecto',
@@ -12,14 +14,30 @@ import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
 export class LineChartTrazabilidadProyectoComponent implements OnInit {
   listaTrazabilidades: any[];
   show: boolean=false;
+  transaccionSeleccionada:string='';
 
-  constructor(private trazabilidadService:TrazabiliadService) { }
+  constructor(private trazabilidadService:TrazabiliadService,
+    private transaccionService:TransaccionService) { }
 
   ngOnInit(): void {
+    this.cargarListaTrazabilidad();
     this.cargarListaTransacciones();
   }
-
+  listaTransacciones: Transaccion[];
   private cargarListaTransacciones() {
+    this.transaccionService.getAll()
+                           .snapshotChanges()
+                           .pipe( map(changes => 
+                                changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+    ).subscribe(
+      data => {
+        this.listaTransacciones = data;
+      }
+    );
+  }
+
+
+  private cargarListaTrazabilidad() {
     this.trazabilidadService.getAll()
                            .snapshotChanges()
                            .pipe( map(changes => 
@@ -52,9 +70,9 @@ export class LineChartTrazabilidadProyectoComponent implements OnInit {
   lineChartType = 'line';
   
   mostrarTrazabilidades(){
-    
+    this.lineChartData=[];
     //const firstMap= this.listaTrazabilidades.map(trazabilidad =>  new Date(trazabilidad.fechaCreacion) .toLocaleString('default', { month: 'long' }));
-    const nombreTransaccion='ESTADO DE CUENTA';
+    const nombreTransaccion=this.transaccionSeleccionada;
     
     const subListaConTransaccion= this.listaTrazabilidades.filter(traz=> traz.transaccion===nombreTransaccion );
     console.log("sublista: filtrada con nombreTransaccion")

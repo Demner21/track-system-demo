@@ -13,6 +13,7 @@ import { Transaccion } from '../transaccion/transaccion.model';
 export class GraphicsComponent implements OnInit {
   listaTransacciones: Transaccion[];
   listaTorres: string[];
+  transaccionSeleccionada:string='';
   
 
   constructor(private transaccionService:TransaccionService){
