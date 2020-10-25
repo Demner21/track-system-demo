@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label,Color } from 'ng2-charts';
 import { map } from 'rxjs/operators';
 import { TransaccionService } from '../services/transaccion.service';
 import { Transaccion } from '../transaccion/transaccion.model';
@@ -56,6 +56,10 @@ export class GraphicsAplicacionComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
+  public barChartColors: Color[] = [
+    { backgroundColor: 'red' },
+    { backgroundColor: 'green' },
+  ]
 
   barChartLabels: Label[] ;
   barChartType: ChartType = 'bar';

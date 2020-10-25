@@ -28,6 +28,7 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import { GraphicsComponent } from './graphics/graphics.component';
 import { ChartsModule } from 'ng2-charts';
 import { GraphicsAplicacionComponent } from './graphics-aplicacion/graphics-aplicacion.component';
+import { LineChartTrazabilidadComponent } from './graphics/line-chart-trazabilidad/line-chart-trazabilidad.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { GraphicsAplicacionComponent } from './graphics-aplicacion/graphics-apli
     GetFileComponentComponent,
     IniciarSesionComponent,
     GraphicsComponent,
-    GraphicsAplicacionComponent
+    GraphicsAplicacionComponent,
+    LineChartTrazabilidadComponent
   ],
   imports: [
     BrowserModule,
