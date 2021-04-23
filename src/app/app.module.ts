@@ -31,6 +31,8 @@ import { GraphicsAplicacionComponent } from './graphics-aplicacion/graphics-apli
 import { LineChartTrazabilidadComponent } from './graphics/line-chart-trazabilidad/line-chart-trazabilidad.component';
 import { LineChartTrazabilidadProyectoComponent } from './graphics/line-chart-trazabilidad-proyecto/line-chart-trazabilidad-proyecto.component';
 import { LineChartTrazabilidadTransaccionComponent } from './graphics/line-chart-trazabilidad-transaccion/line-chart-trazabilidad-transaccion.component';
+import { InicioComponentComponent } from './inicio-component/inicio-component.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { LineChartTrazabilidadTransaccionComponent } from './graphics/line-chart
     GraphicsAplicacionComponent,
     LineChartTrazabilidadComponent,
     LineChartTrazabilidadProyectoComponent,
-    LineChartTrazabilidadTransaccionComponent
+    LineChartTrazabilidadTransaccionComponent,
+    InicioComponentComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
