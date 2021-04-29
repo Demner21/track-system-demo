@@ -1,5 +1,6 @@
 import { TrazabiliadService } from './services/trazabilidad.service';
 import { SupplierDataService } from './services/supplier.data.service';
+import { AutenticadorService } from './services/autenticador.service';
 import { TransaccionComponent } from './transaccion/transaccion.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { ListarTrazabilidadesComponent } from './trazabilidad/listar-trazabilida
 import { RegistrarInsumosComponent } from './trazabilidad/registrar-trazabilidad/registrar-insumos/registrar-insumos.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import  {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
 import { GestionTrazabilidadComponent } from './trazabilidad/gestion-trazabilidad/gestion-trazabilidad.component';
 import { AplicacionComponent } from './aplicacion/aplicacion.component';
@@ -33,6 +35,8 @@ import { LineChartTrazabilidadProyectoComponent } from './graphics/line-chart-tr
 import { LineChartTrazabilidadTransaccionComponent } from './graphics/line-chart-trazabilidad-transaccion/line-chart-trazabilidad-transaccion.component';
 import { InicioComponentComponent } from './inicio-component/inicio-component.component';
 import { FooterComponent } from './footer/footer.component';
+import { SpinnerComponent } from './util/spinner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -58,7 +62,8 @@ import { FooterComponent } from './footer/footer.component';
     LineChartTrazabilidadProyectoComponent,
     LineChartTrazabilidadTransaccionComponent,
     InicioComponentComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -67,12 +72,15 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
-    ChartsModule
+    AngularFireAuthModule,
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [
     TransaccionService,
     SupplierDataService,
-    TrazabiliadService
+    TrazabiliadService,
+    AutenticadorService
   ],
   bootstrap: [AppComponent]
 })

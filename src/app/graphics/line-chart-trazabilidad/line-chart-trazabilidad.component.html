@@ -1,3 +1,4 @@
+<ng-container>
 <h3>Historial de trazabilidades</h3>
 <button class="btn-primary" (click)="mostrarTrazabilidades()">Mostrar</button>
 <div class="chart-wrapper" *ngIf="show">
@@ -11,3 +12,4 @@
         [plugins]="lineChartPlugins">
     </canvas>
 </div>
+</ng-container>
