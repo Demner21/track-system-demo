@@ -37,6 +37,7 @@ import { InicioComponentComponent } from './inicio-component/inicio-component.co
 import { FooterComponent } from './footer/footer.component';
 import { SpinnerComponent } from './util/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphicsTorresComponent } from './graphics/graphics-torres/graphics-torres.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { HttpClientModule } from '@angular/common/http';
     LineChartTrazabilidadTransaccionComponent,
     InicioComponentComponent,
     FooterComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    GraphicsTorresComponent
   ],
   imports: [
     BrowserModule,
