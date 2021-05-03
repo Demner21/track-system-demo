@@ -15,21 +15,23 @@ export class GraphicsTorresComponent implements OnInit {
   constructor(private transaccionService:TransaccionService) { }
 
   ngOnInit(): void {
+       this.isLoading=true;
        this.cargarListaTransacciones();
-   
   }
 
-  
+  isLoading:boolean =false;
   private cargarListaTransacciones() {
     this.transaccionService.getAll()
-                           .snapshotChanges()
-                           .pipe( map(changes => 
-                                changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
-    ).subscribe(
-      data => {
-        this.listaTransacciones = data;
-      }
-    );
+                            .snapshotChanges()
+                           .pipe( 
+                             map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+                            ).subscribe(
+                            data => {
+                              this.listaTransacciones = data;
+                              this.mostrarTransacciones();
+                              this.isLoading =false;
+                            }
+                          );
   }
 
 

@@ -22,6 +22,7 @@ export class GraphicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarListaTransacciones();
+    this.mostrarTransacciones();
    
   }
 
