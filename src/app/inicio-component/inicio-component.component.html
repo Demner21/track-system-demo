@@ -1,32 +1,32 @@
-<div class="container-fluid">
+<div class="container">
     <div class="row justify-content-md-center">
         <div class="col-xs-12 col-sm-12 col-md-8">
             <ngb-carousel *ngIf="images">
                 <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img [src]="images[0]" alt="Random first slide">
+                    <div class="img-fluid">
+                        <img [src]="imagesPath0" alt="Random first slide">
                     </div>
-                    <div class="carousel-caption">
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </ng-template>
-                <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img [src]="images[1]" alt="Random second slide">
-                    </div>
-                    <div class="carousel-caption">
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="carousel-caption bg-dark text-white">
+                        <h3>Administra la complejidad de tu proyecto</h3>
+                        <p>Para proyectos complejos, soluciones especializadas.</p>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
                     <div class="picsum-img-wrapper">
-                        <img [src]="images[2]" alt="Random third slide">
+                        <img [src]="imagesPath1" alt="Random second slide">
                     </div>
-                    <div class="carousel-caption">
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <div class="carousel-caption bg-success text-white">
+                        <h3>Todo en un solo lugar</h3>
+                        <p>Conoce que sucede en tus soluciones a un solo click</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="imagesPath2" alt="Random third slide">
+                    </div>
+                    <div class="carousel-caption bg-info text-white">
+                        <h3>Gráficos y reportes</h3>
+                        <p>A tu alcance, siempre.</p>
                     </div>
                 </ng-template>
             </ngb-carousel>
