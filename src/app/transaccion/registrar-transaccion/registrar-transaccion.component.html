@@ -9,9 +9,8 @@
           id="inputGroupSelect01"
           [(ngModel)]="aplicacionSeleccionada"
           name="aplicacionSeleccionada"
-          placeholder="adsd"
           required>
-          <option selected disabled>Selecciona...</option>
+          <option disabled>Selecciona...</option>
           <option *ngFor="let aplicacion of listAplicaciones" [value]="aplicacion.nombreAplicacion">
             {{ aplicacion.nombreAplicacion }}
           </option>
