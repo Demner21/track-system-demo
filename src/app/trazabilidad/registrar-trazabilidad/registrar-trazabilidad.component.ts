@@ -39,7 +39,8 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   ngOnInit(): void {
     this.cargarListaTransacciones();
     this.cargarListaAplicaciones();
-    this.nombreAplicacion='Selecciona...'
+    this.nombreAplicacion='Selecciona...';
+    this.transaccionSeleccionada = 'Selecciona...';
   }
 
   private cargarListaTransacciones() {

@@ -70,6 +70,7 @@
             [(ngModel)]="transaccionSeleccionada"
             name="transaccionSeleccionada"
             required>
+            <option disabled>Selecciona...</option>
             <option *ngFor="let transaccion of subListaTransacciones" 
                     [value]="transaccion.transaccionValor">
                       {{transaccion.transaccionValor}}
