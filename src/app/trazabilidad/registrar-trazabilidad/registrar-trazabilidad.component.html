@@ -13,10 +13,10 @@
             [(ngModel)]="nombreAplicacion"
             name="nombreAplicacion"
             (change)="getAplicacionForGetTransaccion()"
-          required>
+            required>
             <option disabled>Selecciona...</option>
             <option *ngFor="let item of listAplicaciones"
-                    [value]="item.idAplicacion"
+                    [value]="item.key"
                     >
                     {{item.nombreAplicacion}}
             </option>

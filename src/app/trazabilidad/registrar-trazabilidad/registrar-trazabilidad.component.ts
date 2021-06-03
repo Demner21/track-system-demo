@@ -63,7 +63,7 @@ export class RegistrarTrazabilidadComponent implements OnInit {
     ).subscribe(
       data => {
         this.listAplicaciones = data;
-        //console.log('Lista de aplicaciones recibida: ');
+       // console.log('Lista de aplicaciones recibida: ');
         //console.log(this.listAplicaciones);
       }
     );
@@ -85,19 +85,18 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   }
 
   getAplicacionForGetTransaccion(){
-    console.log("metodo lanzado para buscar transaccion de "+this.nombreAplicacion)
+    //console.log("metodo lanzado para buscar transaccion de "+this.nombreAplicacion)
     //console.log(this.listaTransacciones);
-
     // const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.nombreAplicacion);
-    const nombreAplicacion=this.buscarAplicacionPorId(this.nombreAplicacion);
-    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
+    //const nombreAplicacion=this.buscarAplicacionPorId(this.nombreAplicacion);
+    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada.key ===this.nombreAplicacion);
     //console.log(this.subListaTransacciones);
   }
 
   buscarAplicacionPorId(idAplicacion:string):string{
     return this.listAplicaciones
                .find(
-                   app => app.idAplicacion === idAplicacion 
+                   app => app.key === idAplicacion 
                   ).nombreAplicacion;
   } 
 

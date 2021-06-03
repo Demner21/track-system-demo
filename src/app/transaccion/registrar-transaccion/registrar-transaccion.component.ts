@@ -41,9 +41,10 @@ export class RegistrarTransaccionComponent implements OnInit {
   }
 
   onCrearTransaccion(){
-
-    this.registrarTransaccionService.registrarTransaccion(
-      new Transaccion(this.aplicacionSeleccionada,this.torreValor,this.transaccionValor));
+    
+   const aplicacion = this.listAplicaciones.find(app => app.key === this.aplicacionSeleccionada);
+     this.registrarTransaccionService.registrarTransaccion(
+          new Transaccion(aplicacion,this.torreValor,this.transaccionValor));
     this.cleanVariables();
   }
 

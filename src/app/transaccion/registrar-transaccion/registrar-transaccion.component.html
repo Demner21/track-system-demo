@@ -12,7 +12,7 @@
           name="aplicacionSeleccionada"
           required>
           <option disabled>Selecciona...</option>
-          <option *ngFor="let aplicacion of listAplicaciones" [value]="aplicacion.nombreAplicacion">
+          <option *ngFor="let aplicacion of listAplicaciones" [value]="aplicacion.key">
             {{ aplicacion.nombreAplicacion }}
           </option>
         </select>

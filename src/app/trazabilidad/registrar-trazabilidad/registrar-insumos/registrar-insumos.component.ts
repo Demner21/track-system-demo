@@ -132,12 +132,12 @@ export class RegistrarInsumosComponent implements OnInit {
     this.tipoComponente='';
   }  
   getAplicacionForGetTransaccion(){
-    console.log("metodo lanzado para buscar transaccion de "+this.codAplicacionDefault)
-    console.log(this.listaTransacciones);
+    //console.log("metodo lanzado para buscar transaccion de "+this.codAplicacionDefault)
+    //console.log(this.listaTransacciones);
 
-    const nombreAplicacion=this.buscarAplicacionPorId(this.codAplicacionDefault);
-    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
-    console.log(this.subListaTransacciones);
+    //const nombreAplicacion=this.buscarAplicacionPorId(this.codAplicacionDefault);
+    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada.key ===this.codAplicacionDefault);
+    //console.log(this.subListaTransacciones);
   }
   buscarAplicacionPorId(idAplicacion:string):string{
     return this.listAplicaciones
