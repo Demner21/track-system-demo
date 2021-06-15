@@ -103,7 +103,10 @@ export class GestionTrazabilidadComponent implements OnInit {
     this.gestionTrazabilidadForm.reset();
   }
   buscarAplicacionPorId(idAplicacion:string){
-    return this.supplierDataService.buscarAplicacionPorId(idAplicacion);
+    return this.listAplicaciones
+               .find(
+                   app => app.key === idAplicacion 
+                  ).nombreAplicacion;
   }
 
   validacionformulario(){
