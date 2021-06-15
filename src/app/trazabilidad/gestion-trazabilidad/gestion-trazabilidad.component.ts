@@ -7,6 +7,7 @@ import { TrazabiliadService } from 'src/app/services/trazabilidad.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AplicacionService } from 'src/app/services/aplicacion.service';
 
 @Component({
   selector: 'app-gestion-trazabilidad',
@@ -20,6 +21,7 @@ export class GestionTrazabilidadComponent implements OnInit {
   subListaTransacciones: any;
 
   constructor(
+    private aplicacionService: AplicacionService,
     private supplierDataService: SupplierDataService,
     private transaccionService: TransaccionService,
     private trazabilidadService: TrazabiliadService,
@@ -29,7 +31,8 @@ export class GestionTrazabilidadComponent implements OnInit {
   @ViewChild('form', { static: false }) gestionTrazabilidadForm: NgForm;
 
   ngOnInit(): void {
-    this.listAplicaciones = this.supplierDataService.listAplicaciones;
+    this.cargarListaAplicaciones();
+    //this.listAplicaciones = this.supplierDataService.listAplicaciones;
     this.cargarListaTransacciones();
     this.trazabilidadService.getAll()
       .snapshotChanges()
@@ -40,6 +43,19 @@ export class GestionTrazabilidadComponent implements OnInit {
           this.listaTrazabilidades = data;
         }
       );
+  }
+  private cargarListaAplicaciones() {
+    this.aplicacionService.getAll()
+                           .snapshotChanges()
+                           .pipe( map(changes => 
+                                changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+    ).subscribe(
+      data => {
+        this.listAplicaciones = data;
+       // console.log('Lista de aplicaciones recibida: ');
+        //console.log(this.listAplicaciones);
+      }
+    );
   }
 
   listAplicaciones: any;
@@ -124,11 +140,10 @@ export class GestionTrazabilidadComponent implements OnInit {
     this.profileUrl = ref.getDownloadURL();
   }
   getAplicacionForGetTransaccion(){
-    console.log("metodo lanzado para buscar transaccion de "+this.idAplicacion)
-    console.log(this.listaTransacciones);
-
-    const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.idAplicacion);
-    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada ===nombreAplicacion);
-    console.log(this.subListaTransacciones);
+    //console.log("metodo lanzado para buscar transaccion de "+this.idAplicacion)
+    //console.log(this.listaTransacciones);
+    //const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.idAplicacion);
+    this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada.key ===this.idAplicacion);
+    //console.log(this.subListaTransacciones);
   }
 }

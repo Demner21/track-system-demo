@@ -20,7 +20,7 @@
                             (change)="getAplicacionForGetTransaccion()"
                             required>
                         <option *ngFor="let item of listAplicaciones" 
-                                [value]="item.idAplicacion">
+                                [value]="item.key">
                                 {{item.nombreAplicacion}}
                         </option>
                     </select>
