@@ -1,6 +1,6 @@
 .aplicacion-input-traz{
-    width: 60%;
-    margin-left: 88px;
+    width: 66%;
+    margin-left: 60px;
   }
   .traz-input-div{
     margin-top: 20px
@@ -17,4 +17,28 @@
     margin-top: 14px;
     width: 92%;
   }
-  
+  .login-dark {
+    height:460px;
+    /* background:#475d62 ;url(../../assets/candado.png) */
+    background:#475d62; 
+    background-size:cover;
+    position:relative;
+    padding-top: 25px;
+  }
+  .gest-trazabilidad{
+    width: 82%;
+    height: 550px;
+  }
+  h3{
+    font-size: 2.05rem;
+  }
+  .cod-proy-input,.torre-input{
+    display: inline-block;
+    width: 66%;
+    margin-left: 15px;
+}
+.btn-grabar-transaccion{
+  margin-top: -5px;
+  margin-left: 200px;
+  width: 67%;
+}
