@@ -22,4 +22,7 @@ perfil1_analista_funcional: { [RA,RTX,RTZ,CTZ]}
 https://bezkoder.com/angular-11-file-upload-firebase-storage/
 
 repositorio github
-https://github1s.com/bezkoder/angular-11-firebase-storage 
+https://github1s.com/bezkoder/angular-11-firebase-storage }
+
+--medidas de piso
+3.20 x 4.10

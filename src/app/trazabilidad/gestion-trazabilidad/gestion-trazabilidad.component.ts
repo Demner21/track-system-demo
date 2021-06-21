@@ -113,6 +113,8 @@ export class GestionTrazabilidadComponent implements OnInit {
     return !this.gestionTrazabilidadForm.valid 
   }
   openModalTrazabilidadDetalle(content, trazabilidad){
+    console.log("openModalTrazabilidadDetalle" + trazabilidad)
+    console.log(trazabilidad)
     this.trazabilidadForModal=trazabilidad;
     const ref = this.storage.ref(this.trazabilidadForModal.urlDocumento);
     this.profileUrl = ref.getDownloadURL();
@@ -141,6 +143,8 @@ export class GestionTrazabilidadComponent implements OnInit {
     console.log("archivo a buscar:" + urlArchivo);
     const ref = this.storage.ref(urlArchivo);
     this.profileUrl = ref.getDownloadURL();
+    console.log("this.profileUrl:" + this.profileUrl);
+    console.log( this.profileUrl);
   }
   getAplicacionForGetTransaccion(){
     //console.log("metodo lanzado para buscar transaccion de "+this.idAplicacion)
