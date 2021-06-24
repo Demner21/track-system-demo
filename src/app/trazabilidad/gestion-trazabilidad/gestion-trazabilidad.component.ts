@@ -8,6 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AplicacionService } from 'src/app/services/aplicacion.service';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-gestion-trazabilidad',
@@ -26,7 +27,8 @@ export class GestionTrazabilidadComponent implements OnInit {
     private transaccionService: TransaccionService,
     private trazabilidadService: TrazabiliadService,
     private modalService: NgbModal,
-    private storage: AngularFireStorage) { }
+    private storage: AngularFireStorage,
+    private uploadService:UploadService) { }
 
   @ViewChild('form', { static: false }) gestionTrazabilidadForm: NgForm;
 
@@ -87,10 +89,10 @@ export class GestionTrazabilidadComponent implements OnInit {
     this.trazabilidadSearch.codigoProyecto = this.gestionTrazabilidadForm.value.codProyecto;
     this.trazabilidadSearch.transaccion = this.transaccionValor==null ?{  }:this.transaccionValor;
 
-    console.log(this.listaTrazabilidades);
-    console.log( this.listaTransacciones)
-    console.log( this.transaccionValor);
-    console.log( this.trazabilidadSearch)
+    //console.log(this.listaTrazabilidades);
+    //console.log( this.listaTransacciones)
+    //console.log( this.transaccionValor);
+    //console.log( this.trazabilidadSearch)
     
      this.subListaTrazabilidades = this.listaTrazabilidades
       .filter(traz => traz.aplicacion === this.trazabilidadSearch.idAplicacion 
@@ -98,7 +100,7 @@ export class GestionTrazabilidadComponent implements OnInit {
                           traz.proyecto.codigo === this.trazabilidadSearch.codigoProyecto  ))
 
 
-    console.log(this.subListaTrazabilidades);
+    //console.log(this.subListaTrazabilidades);
 
     this.gestionTrazabilidadForm.reset();
   }
@@ -141,10 +143,32 @@ export class GestionTrazabilidadComponent implements OnInit {
 
   descargarArchivo(urlArchivo:string){
     console.log("archivo a buscar:" + urlArchivo);
+
     const ref = this.storage.ref(urlArchivo);
     this.profileUrl = ref.getDownloadURL();
+
     console.log("this.profileUrl:" + this.profileUrl);
     console.log( this.profileUrl);
+
+    // this.uploadService.getFile(urlArchivo).snapshotChanges().pipe(
+    //   map(changes =>
+    //     // store the key
+    //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+    //   )
+    // ).subscribe(fileUploads => {
+    //   this.fileUploads = fileUploads;
+    // });
+
+    this.profileUrl.subscribe(url =>{
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function(event) {
+          var blob = xhr.response;
+       };
+       xhr.open('GET', url);
+      xhr.send();
+    });
+
   }
   getAplicacionForGetTransaccion(){
     //console.log("metodo lanzado para buscar transaccion de "+this.idAplicacion)
@@ -152,5 +176,12 @@ export class GestionTrazabilidadComponent implements OnInit {
     //const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.idAplicacion);
     this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada.key ===this.idAplicacion);
     //console.log(this.subListaTransacciones);
+  }
+  public async getUrl(nombreArchivo: string) {
+    this.storage.ref(nombreArchivo)
+      .getDownloadURL()               // it returns url value as observable
+      .subscribe((url: string) => {
+        // actions with url value
+      })
   }
 }

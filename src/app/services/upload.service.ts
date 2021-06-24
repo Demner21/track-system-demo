@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -26,8 +26,7 @@ export class UploadService {
     // get notified when the download URL is available
     task.snapshotChanges().pipe(
       finalize(() => this.downloadURL = fileRef.getDownloadURL())
-    )
-      .subscribe()
+    ).subscribe()
   }
   private basePath = '/upload/documents/';
   pushFileToStorage(fileUpload: FileUpload): Observable<number> {
@@ -49,5 +48,12 @@ export class UploadService {
   }
   private saveFileData(fileUpload: FileUpload): void {
     this.db.list(this.basePath).push(fileUpload);
+  }
+
+  getFiles(numberItems: number): AngularFireList<FileUpload> {
+    return this.db.list(this.basePath);
+  }
+  getFile(pathFile: string): AngularFireList<FileUpload> {
+    return this.db.list(pathFile);
   }
 }
