@@ -50,10 +50,12 @@ export class UploadService {
     this.db.list(this.basePath).push(fileUpload);
   }
 
-  getFiles(numberItems: number): AngularFireList<FileUpload> {
-    return this.db.list(this.basePath);
-  }
+  // getFiles(numberItems: number): AngularFireList<FileUpload> {
+  //   return this.db.list(this.basePath);
+  // }
   getFile(pathFile: string): AngularFireList<FileUpload> {
+    console.log("ruta recibida "+ pathFile);
+    // return this.db.list(pathFile, ref =>  ref.limitToLast(1));
     return this.db.list(pathFile);
   }
 }

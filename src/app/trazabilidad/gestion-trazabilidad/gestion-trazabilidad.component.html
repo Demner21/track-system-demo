@@ -107,16 +107,14 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nombre Documento</th>
-              <th scope="col">Descargar</th>
+              <!-- <th scope="col">Descargar</th> -->
             </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let documento of trazabilidadForModal.documentacion; index as i">
+               <!-- <tr *ngFor="let file of trazabilidadForModal.documentacion; index as i">  -->
+               <tr *ngFor="let file of fileUploads; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ documento.nombreDocumento }}</td>
-                <td>
-                  <button class="btn btn-primary" (click)="descargarArchivo(documento.urlDocumento)">Descargar</button>
-                </td>
+                <app-trazabilidad  [documento]='file'> </app-trazabilidad>
                  <!-- <td *ngIf="profileUrl | async; let url">
                     <a [href]="url | async" target="_blank">Download Me!</a></td> -->
               </tr>

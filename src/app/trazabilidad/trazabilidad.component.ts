@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FileUpload } from '../model/file-upload';
 
 @Component({
   selector: 'app-trazabilidad',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trazabilidad.component.css']
 })
 export class TrazabilidadComponent implements OnInit {
+
+  @Input() documento!: FileUpload;
 
   constructor() { }
 

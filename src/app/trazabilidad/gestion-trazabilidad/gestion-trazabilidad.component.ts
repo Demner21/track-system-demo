@@ -118,8 +118,21 @@ export class GestionTrazabilidadComponent implements OnInit {
     console.log("openModalTrazabilidadDetalle" + trazabilidad)
     console.log(trazabilidad)
     this.trazabilidadForModal=trazabilidad;
-    const ref = this.storage.ref(this.trazabilidadForModal.urlDocumento);
-    this.profileUrl = ref.getDownloadURL();
+    
+    //const ref = this.storage.ref(this.trazabilidadForModal.urlDocumento);
+    //this.profileUrl = ref.getDownloadURL();
+     //let urlDocumentacion =this.trazabilidadForModal.documentacion[0].urlDocumento;
+
+    let urlDocumentacion ='/upload/documents/';
+    this.uploadService.getFile(urlDocumentacion).snapshotChanges().pipe(
+      map(changes =>
+        // store the key
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(fileUploads => {
+      this.fileUploads = fileUploads;
+    });
+
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
       .result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -129,7 +142,7 @@ export class GestionTrazabilidadComponent implements OnInit {
 
   }
   closeResult = '';
-
+  fileUploads?: any[];
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -179,9 +192,9 @@ export class GestionTrazabilidadComponent implements OnInit {
   }
   public async getUrl(nombreArchivo: string) {
     this.storage.ref(nombreArchivo)
-      .getDownloadURL()               // it returns url value as observable
+      .getDownloadURL()
       .subscribe((url: string) => {
-        // actions with url value
-      })
+     // actions with url value
+    });
   }
 }
