@@ -112,7 +112,8 @@
             </thead>
             <tbody>
                <!-- <tr *ngFor="let file of trazabilidadForModal.documentacion; index as i">  -->
-               <tr *ngFor="let file of fileUploads; index as i">
+               <!-- <tr *ngFor="let file of fileUploads; index as i"> -->
+               <tr *ngFor="let file of fileUploads_2; index as i">
                 <th scope="row">{{ i + 1 }}</th>
                 <app-trazabilidad  [documento]='file'> </app-trazabilidad>
                  <!-- <td *ngIf="profileUrl | async; let url">
