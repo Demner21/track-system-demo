@@ -120,30 +120,32 @@ export class GestionTrazabilidadComponent implements OnInit {
     this.trazabilidadForModal=trazabilidad;
     this.fileUploads_2=[];
     let listaDocumentacion = this.trazabilidadForModal.documentacion;
-    listaDocumentacion.forEach(doc => {
-      this.storage.ref(doc.urlDocumento)
-      .getDownloadURL()
-      .subscribe((url: string) => {
-        //doc.urlDescarga=url;
-        this.fileUploads_2.push({name: doc.nombreDocumento , url :url});
-    });
-    });
-
     console.log("listaDocumentacion")
     console.log(listaDocumentacion)
+    
+    if (listaDocumentacion) {
+      listaDocumentacion.forEach(doc => {
+        this.storage.ref(doc.urlDocumento)
+        .getDownloadURL()
+        .subscribe((url: string) => {
+          //doc.urlDescarga=url;
+          this.fileUploads_2.push({name: doc.nombreDocumento , url :url});
+      });
+      });
+    }
+
     //const ref = this.storage.ref(this.trazabilidadForModal.urlDocumento);
     //this.profileUrl = ref.getDownloadURL();
-     //let urlDocumentacion =this.trazabilidadForModal.documentacion[0].urlDocumento;
 
-    let urlDocumentacion ='/upload/documents/';
-    this.uploadService.getFile(urlDocumentacion).snapshotChanges().pipe(
-      map(changes =>
-        // store the key
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    ).subscribe(fileUploads => {
-      this.fileUploads = fileUploads;
-    });
+    // let urlDocumentacion ='/upload/documents/';
+    // this.uploadService.getFile(urlDocumentacion).snapshotChanges().pipe(
+    //   map(changes =>
+    //     // store the key
+    //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+    //   )
+    // ).subscribe(fileUploads => {
+    //   this.fileUploads = fileUploads;
+    // });
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
       .result.then((result) => {
