@@ -26,3 +26,6 @@ https://github1s.com/bezkoder/angular-11-firebase-storage }
 
 --medidas de piso
 3.20 x 4.10
+
+para agregar un disabled a un boton bajo cierta logica:
+[disabled]="!fileUploads_2 || fileUploads_2.length === 0" 

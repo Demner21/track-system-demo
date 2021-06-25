@@ -52,10 +52,7 @@ export class AplicacionComponent implements OnInit {
 
 
   onCrearAplicacion(){
-    this.isLoading=true;
-    this.aplicacion.nombreAplicacion= this.signupForm.value.nombreAplicacion;
-    this.aplicacion.usuarioResponsable= this.signupForm.value.usuarioResponsable;
-    this.aplicacion.torreValor=this.signupForm.value.torreValor;
+    this.changeAndSetData();
 
     if (!this.aplicacionExiste(this.aplicacion.nombreAplicacion)) {
       this._error.next("Aplicacion "+ this.aplicacion.nombreAplicacion + " ya existe!")
@@ -72,6 +69,14 @@ export class AplicacionComponent implements OnInit {
     this.signupForm.reset();
     this._success.next("Aplicacion creada correctamente")
   }
+
+   changeAndSetData() {
+    this.isLoading = true;
+    this.aplicacion.nombreAplicacion = this.signupForm.value.nombreAplicacion;
+    this.aplicacion.usuarioResponsable = this.signupForm.value.usuarioResponsable;
+    this.aplicacion.torreValor = this.signupForm.value.torreValor;
+  }
+
   aplicacionExiste(nombreAplicacion: string) :boolean{
     const result  =this.listAplicaciones.find(aplicacion =>{aplicacion.nombreAplicacion === nombreAplicacion});
     console.log("resultado de validacion de "+ nombreAplicacion + " --> " + result);
