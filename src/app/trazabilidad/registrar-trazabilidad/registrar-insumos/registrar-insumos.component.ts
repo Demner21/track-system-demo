@@ -57,7 +57,7 @@ export class RegistrarInsumosComponent implements OnInit {
 
   listaComponentes:{nombreComponente:string, tipoComponente:string}[]=[];
   subListaTransacciones: any;
-  constructor(private supplierData:SupplierDataService,
+  constructor(
     private transaccionService:TransaccionService,
     private insumoService: InsumoService,
     private aplicacionService: AplicacionService) { }

@@ -24,7 +24,6 @@ export class RegistrarTransaccionComponent implements OnInit {
   private _error = new Subject<string>();
   
   constructor(private registrarTransaccionService:TransaccionService,
-              private supplierDataService: SupplierDataService,
               private aplicacionService: AplicacionService)
                { }
 

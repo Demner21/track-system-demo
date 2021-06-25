@@ -30,8 +30,7 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   listaDocumentacion: { nombreDocumento: string , urlDocumento:string}[]=[];
   nameOfFile: any;
   
-  constructor(private supplierDataService: SupplierDataService,
-    private transaccionService: TransaccionService,
+  constructor(private transaccionService: TransaccionService,
     private trazabilidadService: TrazabiliadService,
     private uploadService:UploadService,
     private storage: AngularFireStorage,

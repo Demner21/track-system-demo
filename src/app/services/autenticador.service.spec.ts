@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { AutenticadorService } from './autenticador.service';
@@ -6,7 +7,12 @@ describe('AutenticadorService', () => {
   let service: AutenticadorService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers:[
+        AutenticadorService,
+        {provide :HttpClient , useClass: HttpClientMock},
+      ]
+    });
     service = TestBed.inject(AutenticadorService);
   });
 
@@ -14,3 +20,4 @@ describe('AutenticadorService', () => {
     expect(service).toBeTruthy();
   });
 });
+export class HttpClientMock{}

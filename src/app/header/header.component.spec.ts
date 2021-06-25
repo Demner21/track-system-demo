@@ -29,6 +29,14 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  // it('should render title', () => {
+  //   const fixture = TestBed.createComponent(HeaderComponent);
+  //   fixture.detectChanges();
+  //   const compiled = fixture.nativeElement;
+  //   expect(compiled.querySelector('.navbar-brand').textContent).toContain('track-system-demo app is running!');
+  // });
 });
 
 class MockUserService {

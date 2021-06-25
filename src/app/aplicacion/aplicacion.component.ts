@@ -16,7 +16,7 @@ export class AplicacionComponent implements OnInit {
   private _success = new Subject<string>();
   private _error = new Subject<string>();
 
-  listAplicaciones:any;
+  listAplicaciones:any=null;
   constructor(private aplicacionService:AplicacionService) { }
 
 
@@ -32,7 +32,7 @@ export class AplicacionComponent implements OnInit {
     });
   }
 
-  aplicacion={
+  aplicacion :{
     nombreAplicacion:'',
     usuarioResponsable:'',
     torreValor:''
