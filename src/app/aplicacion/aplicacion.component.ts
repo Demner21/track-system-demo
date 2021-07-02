@@ -32,7 +32,7 @@ export class AplicacionComponent implements OnInit {
     });
   }
 
-  aplicacion :{
+  aplicacion ={
     nombreAplicacion:'',
     usuarioResponsable:'',
     torreValor:''
@@ -54,10 +54,10 @@ export class AplicacionComponent implements OnInit {
   onCrearAplicacion(){
     this.changeAndSetData();
 
-    if (!this.aplicacionExiste(this.aplicacion.nombreAplicacion)) {
+    if (this.aplicacionExiste(this.aplicacion.nombreAplicacion)) {
       this._error.next("Aplicacion "+ this.aplicacion.nombreAplicacion + " ya existe!")
       this.isLoading=false;
-      this.signupForm.reset();
+      // this.signupForm.reset();
       return;
     }
 
@@ -78,9 +78,15 @@ export class AplicacionComponent implements OnInit {
   }
 
   aplicacionExiste(nombreAplicacion: string) :boolean{
-    const result  =this.listAplicaciones.find(aplicacion =>{aplicacion.nombreAplicacion === nombreAplicacion});
-    console.log("resultado de validacion de "+ nombreAplicacion + " --> " + result);
-    return result;
+    // const result  =this.listAplicaciones.some((aplicacion) =>{aplicacion.nombreAplicacion.trim() === nombreAplicacion.trim()});
+    // console.log("resultado de validacion de "+ nombreAplicacion + " --> " + result);
+     //this.listAplicaciones.some((aplicacion) =>{aplicacion.nombreAplicacion.trim() === nombreAplicacion.trim()});;
+    for (let app of this.listAplicaciones) {
+      if (app.nombreAplicacion.trim() === nombreAplicacion.trim()) {
+        return true;
+      }
+    }
+    return false;
   }
 
   isLoading:boolean =false;
