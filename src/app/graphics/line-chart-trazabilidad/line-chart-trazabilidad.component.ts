@@ -41,6 +41,12 @@ export class LineChartTrazabilidadComponent implements OnInit {
 
   lineChartOptions = {
     responsive: true,
+    scales:{
+      yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]},
   };
 
   lineChartColors: Color[] = [

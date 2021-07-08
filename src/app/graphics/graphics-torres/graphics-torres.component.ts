@@ -52,6 +52,12 @@ export class GraphicsTorresComponent implements OnInit {
   }
   barChartOptions: ChartOptions = {
     responsive: true,
+    scales:{
+      yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]},
   };
   public barChartColors: Color[] = [
     { backgroundColor: 'green' },

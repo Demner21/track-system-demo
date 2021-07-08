@@ -55,7 +55,13 @@ export class LineChartTrazabilidadProyectoComponent implements OnInit {
 
   lineChartOptions = {
     responsive: true,
-    legend: { position: 'left' }
+    legend: { position: 'left' },
+    scales:{
+      yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]},
   };
 
   lineChartColors: Color[] = [
