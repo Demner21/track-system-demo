@@ -38,14 +38,20 @@ export class GraphicsAplicacionComponent implements OnInit {
   }
 
   mostrarTransacciones(){
-    const firstMap= this.listaTransacciones.map(transaccion => transaccion.aplicacionSeleccionada);
+    console.log("mostrarTransacciones this.listaTransacciones");
+    console.log(this.listaTransacciones);
+    const firstMap= this.listaTransacciones.map(transaccion => transaccion.aplicacionSeleccionada.nombreAplicacion);
     const mapReduce = firstMap.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
+    console.log("mostrarTransacciones mapReduce");
     console.log(mapReduce);
     this.barChartLabels =[ ...mapReduce.keys() ];
+    console.log("mostrarTransacciones barChartLabels");
+    console.log(this.barChartLabels);
     const arrayData=[];
     for (let index = 0; index < this.barChartLabels.length; index++) {
       arrayData[index]= mapReduce.get(this.barChartLabels[index]);
     }
+    console.log("mostrarTransacciones arrayData");
     console.log(arrayData);
     this.barChartData=[
       { data: arrayData, label: 'cantidad de transacciones por aplicacion' }
