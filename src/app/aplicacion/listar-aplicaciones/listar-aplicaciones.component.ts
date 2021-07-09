@@ -51,23 +51,8 @@ export class ListarAplicacionesComponent implements OnInit, OnDestroy {
 
   }
 
-  eliminarAplicacion(content, aplicacionSeleccionada){
+  deletAplicacion(content, aplicacionSeleccionada){
     this.aplicacionForModal=aplicacionSeleccionada;
-    const data = {
-      nombreAplicacion: this.aplicacionForModal.nombreAplicacion,
-      torreValor: this.aplicacionForModal.torreValor,
-      usuarioResponsable:this.aplicacionForModal.usuarioResponsable
-    };
-
-    // if (this.aplicacionForModal.key) {
-    //   this.aplicacionService.delete(this.aplicacionForModal.key)
-    //     .then(() =>{
-    //       this.message = 'La aplicacion se eliminó correctamente!'
-    //       this.isSuccess=true;
-    //     } )
-    //     .catch(err => console.log(err));
-    // }
-
     this.modalService.open(content, 
       {ariaLabelledBy: 'modal-basic-title'})
           .result.then((result) => {
@@ -105,4 +90,23 @@ export class ListarAplicacionesComponent implements OnInit, OnDestroy {
     }
   }
   message = '';
+
+
+  eliminarAplicacion(){
+    // this.aplicacionForModal=aplicacionSeleccionada;
+    // const data = {
+    //   nombreAplicacion: this.aplicacionForModal.nombreAplicacion,
+    //   torreValor: this.aplicacionForModal.torreValor,
+    //   usuarioResponsable:this.aplicacionForModal.usuarioResponsable
+    // };
+
+    if (this.aplicacionForModal.key) {
+      this.aplicacionService.delete(this.aplicacionForModal.key)
+        .then(() =>{
+          this.message = 'La aplicacion se eliminó correctamente!'
+          this.isSuccess=true;
+        } )
+        .catch(err => console.log(err));
+    }
+  }
 }

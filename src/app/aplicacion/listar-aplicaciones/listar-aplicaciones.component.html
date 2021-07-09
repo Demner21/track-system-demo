@@ -24,7 +24,7 @@
                 </button>
           <button type="button"
                   class="btn btn-danger"
-                  (click)="eliminarAplicacion(contentEliminar,aplicacion)">
+                  (click)="deletAplicacion(contentEliminar,aplicacion)">
                   <i class="far fa-trash-alt"></i>
           </button>
         </td>
@@ -110,10 +110,12 @@
     <div class="modal-footer">
       <button type="button" 
               class="btn bg-danger text-white" 
-              (click)="actualizarAplicacion()">Eliminar</button>
+              (click)="eliminarAplicacion()">Eliminar</button>
       <button type="button" 
               class="btn bg-info text-white" 
               (click)="modal.close('Save click')">Cerrar</button>        
     </div>
+    <div class="p-3 mb-2 bg-success text-white text-center"
+    *ngIf="isSuccess">{{ message }}</div>
   </ng-template>
 </div>
