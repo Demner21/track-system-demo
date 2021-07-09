@@ -18,19 +18,9 @@ export class ListarAplicacionesComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    // this.tempOnSubscription.unsubscribe();
   }
-  // private tempOnSubscription:Subscription;
 
   ngOnInit(): void {
-    //const data = from(fetch('/api/endpoint'));
-    // this.tempOnSubscription= interval(1000)
-    //   .pipe( map( (response: number)=>{ return 'Value of data: '+(response*10)}))
-    //   .subscribe({
-    //   next( response) {console.log(response);},
-    //   error(err) {console.log('Error: '+ err);},
-    //   complete(){console.log('Completed');}
-    // });
     this.message = '';
     this.cargarListaAplicaciones();
   }
@@ -61,7 +51,7 @@ export class ListarAplicacionesComponent implements OnInit, OnDestroy {
 
   }
 
-  eliminarAplicacion( aplicacionSeleccionada){
+  eliminarAplicacion(content, aplicacionSeleccionada){
     this.aplicacionForModal=aplicacionSeleccionada;
     const data = {
       nombreAplicacion: this.aplicacionForModal.nombreAplicacion,
@@ -69,14 +59,24 @@ export class ListarAplicacionesComponent implements OnInit, OnDestroy {
       usuarioResponsable:this.aplicacionForModal.usuarioResponsable
     };
 
-    if (this.aplicacionForModal.key) {
-      this.aplicacionService.delete(this.aplicacionForModal.key)
-        .then(() =>{
-          this.message = 'La aplicacion se eliminó correctamente!'
-          this.isSuccess=true;
-        } )
-        .catch(err => console.log(err));
-    }
+    // if (this.aplicacionForModal.key) {
+    //   this.aplicacionService.delete(this.aplicacionForModal.key)
+    //     .then(() =>{
+    //       this.message = 'La aplicacion se eliminó correctamente!'
+    //       this.isSuccess=true;
+    //     } )
+    //     .catch(err => console.log(err));
+    // }
+
+    this.modalService.open(content, 
+      {ariaLabelledBy: 'modal-basic-title'})
+          .result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+
+
   }
 
   actualizarAplicacion(){

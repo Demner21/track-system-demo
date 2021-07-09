@@ -24,7 +24,7 @@
                 </button>
           <button type="button"
                   class="btn btn-danger"
-                  (click)="eliminarAplicacion(aplicacion)">
+                  (click)="eliminarAplicacion(contentEliminar,aplicacion)">
                   <i class="far fa-trash-alt"></i>
           </button>
         </td>
@@ -91,5 +91,29 @@
     </div>
     <div class="p-3 mb-2 bg-success text-white text-center"
          *ngIf="isSuccess">{{ message }}</div>
+  </ng-template>
+
+  <ng-template #contentEliminar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title text-danger" 
+          id="modal-basic-title">Eliminando Aplicación</h4>
+      <button type="button" 
+              class="close" 
+              aria-label="Close" 
+              (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="p-3 mb-2 bg-warning text-dark">¿Está seguro de eliminar la aplicación?</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" 
+              class="btn bg-danger text-white" 
+              (click)="actualizarAplicacion()">Eliminar</button>
+      <button type="button" 
+              class="btn bg-info text-white" 
+              (click)="modal.close('Save click')">Cerrar</button>        
+    </div>
   </ng-template>
 </div>
