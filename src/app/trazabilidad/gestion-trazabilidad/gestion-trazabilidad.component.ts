@@ -33,6 +33,8 @@ export class GestionTrazabilidadComponent implements OnInit {
   @ViewChild('form', { static: false }) gestionTrazabilidadForm: NgForm;
 
   ngOnInit(): void {
+    this.idAplicacion='Selecciona...';
+    this.transaccionValor='Selecciona...';
     this.cargarListaAplicaciones();
     //this.listAplicaciones = this.supplierDataService.listAplicaciones;
     this.cargarListaTransacciones();
