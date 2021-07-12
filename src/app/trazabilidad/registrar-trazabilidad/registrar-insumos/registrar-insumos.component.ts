@@ -148,6 +148,7 @@ export class RegistrarInsumosComponent implements OnInit {
       });
     }
     this.tipoComponente='';
+    this.tipoComponente='Selecciona...';
   }  
   getAplicacionForGetTransaccion(){
     //console.log("metodo lanzado para buscar transaccion de "+this.codAplicacionDefault)
