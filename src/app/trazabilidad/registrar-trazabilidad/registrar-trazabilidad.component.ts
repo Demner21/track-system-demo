@@ -101,6 +101,7 @@ export class RegistrarTrazabilidadComponent implements OnInit {
     // const nombreAplicacion=this.supplierDataService.buscarAplicacionPorId(this.nombreAplicacion);
     //const nombreAplicacion=this.buscarAplicacionPorId(this.nombreAplicacion);
     this.subListaTransacciones= this.listaTransacciones.filter(t => t.aplicacionSeleccionada.key ===this.nombreAplicacion);
+    this.transaccionSeleccionada = 'Selecciona...';
     //console.log(this.subListaTransacciones);
   }
 

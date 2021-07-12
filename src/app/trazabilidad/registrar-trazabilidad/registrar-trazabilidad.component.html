@@ -90,14 +90,17 @@
               name="descripcionCambioTransaccion" 
               required></textarea>
         </div>
-        <div class="form-outline mb-4">
-          <label class="text-white mr-2" 
-                 for="customFileLang">Adjuntar documentación</label>
-          <input type="file" 
-                 class="custom-file-input input-file"
-                 id="customFileLang" 
-                 lang="es"
-                 (change)="selectFile($event)">
+        <div class="form-outline mb-4 pl-0">
+            <label class="btn btn-secondary ml-0 pl-0" ngbButtonLabel>
+              Adjuntar documentación
+              <input type="file" 
+                   class="custom-file-input input-file"
+                   id="customFileLang" 
+                   lang="es"
+                   (change)="selectFile($event)"
+                   ngbButton>
+              
+            </label>
           <table class="table table-striped table-dark" *ngIf="selectedFiles">
                   <thead>
                     <tr>
