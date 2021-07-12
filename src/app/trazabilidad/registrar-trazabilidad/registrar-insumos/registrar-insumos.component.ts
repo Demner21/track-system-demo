@@ -3,9 +3,10 @@ import { NgForm } from '@angular/forms';
 import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { InsumoService } from 'src/app/services/insumo.service';
-import { map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 import { Aplicacion } from 'src/app/model/aplicacion.model';
 import { AplicacionService } from 'src/app/services/aplicacion.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-registrar-insumos',
@@ -14,6 +15,11 @@ import { AplicacionService } from 'src/app/services/aplicacion.service';
 })
 export class RegistrarInsumosComponent implements OnInit {
   @ViewChild('form', { static: false }) signupForm: NgForm;
+  private _success = new Subject<string>();
+  private _error = new Subject<string>();
+  isLoadingSucces:boolean =false;
+  errorMessage: string=null;
+  successMessage: string=null;
 
   insumo={
     nombreAplicacion:'',
@@ -69,6 +75,14 @@ export class RegistrarInsumosComponent implements OnInit {
     this.codAplicacionDefault='Selecciona...';
     this.transaccionSeleccionada='Selecciona...';
     this.tipoComponente='Selecciona...';
+    this._success.subscribe(message => this.successMessage = message);
+    this._error.subscribe(message => this.errorMessage = message);
+    this._success.pipe(debounceTime(3500)).subscribe(() => {
+      this.isLoadingSucces=false;
+    });
+    this._error.pipe(debounceTime(3500)).subscribe(() => {
+      this.errorMessage=null;
+    });
   }
   private cargarListaAplicaciones() {
     this.aplicacionService.getAll()
@@ -105,6 +119,8 @@ export class RegistrarInsumosComponent implements OnInit {
    this.insumoService.crearInsumo(this.insumo);
    this.signupForm.reset();
    this.listaComponentes=null;
+   this.isLoadingSucces=true;
+   this._success.next("Insumo creado correctamente")
   }
   agregarComponente(){
     if (this.listaComponentes ==null ) this.listaComponentes =[];

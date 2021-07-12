@@ -207,4 +207,10 @@
       </div>
     </div>
   </form>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div *ngIf="isLoadingSucces" class="alert alert-success mt-4">
+    <p>{{successMessage}}</p>
+  </div> 
 </div>
