@@ -1,0 +1,222 @@
+<div class="container login-dark reg-insumo">
+  <h3 class="text-warning">Registro de trazabilidad de Insumos</h3>
+  <hr class="bg-white">
+  <form (ngSubmit)="onAgregarTrazabilidadInsumo()" #form="ngForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-outline mb-4">
+          <label class="text-white" 
+                 for="i-traz-aplicacion">Aplicación</label>
+          <select 
+            class="custom-select aplicacion-input-traz" 
+            id="i-traz-aplicacion" 
+            [(ngModel)]="codAplicacionDefault"
+            name="nombreAplicacion"
+            (change)="getAplicacionForGetTransaccion()"
+          required>
+            <option disabled>Selecciona...</option>
+            <option *ngFor="let item of listAplicaciones" [value]="item.key">
+              {{ item.nombreAplicacion }}
+            </option>
+            </select>
+        </div>
+        <div class="form-outline mb-4">
+          <label class="text-white" 
+                 for="codProyecto">Código proyecto</label>
+          <input 
+              type="text" 
+              id="codProyecto" 
+              class="form-control codigo-proyecto-input"
+              type="text"
+              ngModel
+              name="codigoProyecto" 
+              required/>
+        </div>
+      </div>
+      <div class="col-sm-6">
+          <div class="form-outline mb-4">
+            <label class="text-white" 
+                   for="transaccionInput">Transacción</label>
+            <select 
+              class="custom-select aplicacion-input-traz" 
+              id="transaccionInput" 
+              [(ngModel)]="transaccionSeleccionada"
+              name="transaccion"
+              (change)="getAplicacionForGetTransaccion()"
+            required>
+            <option selected disabled>Selecciona...</option>
+            <option *ngFor="let transaccion of subListaTransacciones" [value]="transaccion.transaccionValor">
+              {{ transaccion.transaccionValor }}
+            </option>
+              </select>
+          </div>
+          <div class="form-outline mb-4">
+            <label class="text-white" 
+                   for="inputGroupSelect01">Tipo de Componente</label>
+            <select 
+              class="custom-select tipo-compont-input-traz" 
+              id="inputGroupSelect01" 
+              [(ngModel)]="tipoComponente"
+              name="tipoComponente"
+              >
+              <option selected disabled>Selecciona...</option>
+              <option *ngFor="let tipComponente of listaTipoComponentes" [value]="tipComponente">
+                {{ tipComponente }}
+              </option>
+           </select>
+          </div>
+      </div>
+      <div class="col-sm-12">
+        <div *ngIf="tipoComponente==='STORE PROCEDURE'">
+          <hr>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-outline mb-4">
+                <label class="text-white" 
+                       for="nombreComponente">Nombre de componente</label>
+                <input 
+                    type="text" 
+                    id="nombreComponente" 
+                    class="form-control nombreComponente"
+                    type="text"
+                    ngModel
+                    name="nombreComponente" 
+                    required/>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="text-white" 
+                       for="baseDatos">Base de Datos</label>
+                <input 
+                    type="text" 
+                    id="baseDatos" 
+                    class="form-control nombreComponente baseDatos"
+                    type="text"
+                    ngModel
+                    name="baseDatos" 
+                    required/>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-outline mb-4">
+                <label class="text-white" 
+                       for="nombreUsuario">Nombre de Usuario</label>
+                <input 
+                    type="text" 
+                    id="nombreUsuario" 
+                    class="form-control nombreComponente"
+                    type="text"
+                    ngModel
+                    name="nombreUsuario" 
+                    required/>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="text-white" 
+                       for="funcionalidad">Funcionalidad</label>
+                <input 
+                    type="text" 
+                    id="funcionalidad" 
+                    class="form-control nombreComponente funcionalidad"
+                    type="text"
+                    ngModel
+                    name="funcionalidad" 
+                    required/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="btn-submit">
+              <button  class="btn btn-primary btn-block" 
+                (click)="agregarComponente()">
+                Agregar SP
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="tipoComponente==='WEB SERVICE'">
+          <hr>
+          <div class="row">
+            <div class="col-sm-6">
+                <div class="form-outline mb-4">
+                  <label class="text-white" 
+                         for="nombreComponente">Nombre de componente</label>
+                  <input 
+                      type="text" 
+                      id="nombreComponente" 
+                      class="form-control nombreComponente"
+                      type="text"
+                      ngModel
+                      name="nombreComponente" 
+                      required/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-outline mb-4">
+                <label class="text-white" 
+                       for="urlApi">URL</label>
+                <input 
+                    type="text" 
+                    id="urlApi" 
+                    class="form-control nombreComponente funcionalidad"
+                    type="text"
+                    ngModel
+                    name="urlApi" 
+                    required/>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="btn-submit">
+              <button  class="btn btn-primary btn-block"
+              (click)="agregarComponente()" >
+                Agregar WS
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <div class="col-sm-12" *ngIf="listaComponentes!=null && listaComponentes.length > 0 ">
+        <br />
+        <table class="table table-striped table-dark">
+          <caption class="text-white">Lista de componentes</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre componente</th>
+              <th scope="col">Tipo de componente</th>
+              <th scope="col">Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let componente of listaComponentes; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td scope="row">{{  componente.nombreComponente }}</td>
+                <td scope="row">{{  componente.tipoComponente }}</td>
+                <td scope="row">
+                  <button type="button"
+                          class="btn btn-danger"
+                          (click)="quitarComponente(i)">
+                          <i class="far fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="btn-submit">
+        <button type="submit" class="btn btn-primary bg-info btn-block text-white" [disabled]="!form.valid">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div *ngIf="isLoadingSucces" class="alert alert-success mt-4">
+    <p>{{successMessage}}</p>
+  </div> 
+</div>

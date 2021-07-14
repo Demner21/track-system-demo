@@ -1,0 +1,53 @@
+.aplicacion-input-traz{
+    width: 52%;
+    margin-left: 88px;
+  }
+  .tipo-compont-input-traz{
+    width: 52%;
+    margin-left: 28px;
+  }
+  .codigo-proyecto-input{
+    display: inline-block;
+    width: 52%;
+    margin-left: 43px;
+  }
+  .traz-input-div{
+    margin-top: 20px
+  }
+  .traz-input{
+    width: 60%;
+    margin-left: 44px;
+  }
+  .btn-submit{
+    margin-top: 13px;
+    margin-left: 15rem;
+    width: 50%;
+  }
+  .traz-text-area{
+    margin-top: 14px;
+    width: 92%;
+  }
+
+.nombreComponente{
+  display: inline-block;
+  width: 45%;
+  margin-left: 43px;
+}
+.baseDatos{
+  margin-left: 116px;
+}
+.funcionalidad{
+  margin-left: 85px;
+}
+.login-dark {
+  height:600px;
+  /* background:#475d62 ;url(../../assets/candado.png) */
+  background:#475d62; 
+  background-size:cover;
+  position:relative;
+  padding-top: 25px;
+}
+.reg-insumo{
+  margin-top: 20px;
+  width: 80%;
+}

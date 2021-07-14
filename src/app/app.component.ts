@@ -10,5 +10,5 @@ export class AppComponent {
 
   ngOnInit(): void {}
 
-  constructor(private transaccionService:TransaccionService){}
+  constructor(){}
 }

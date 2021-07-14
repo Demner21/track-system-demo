@@ -1,0 +1,127 @@
+<div class="container login-dark gest-trazabilidad">
+  <form (ngSubmit)="onBuscarTrazabilidad()" #form="ngForm">
+    <h3  class="text-warning">Gestión de trazabilidad</h3>
+    <hr class="bg-white">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-outline mb-4">
+          <label class="text-white" 
+                 for="i-traz-aplicacion">Aplicación</label>
+          <select 
+            class="custom-select aplicacion-input-traz" 
+            id="i-traz-aplicacion" 
+            [(ngModel)]="idAplicacion"
+            name="idAplicacion"
+            (change)="getAplicacionForGetTransaccion()"
+            required>
+            <option disabled>Selecciona...</option>
+            <option *ngFor="let item of listAplicaciones"
+                    [value]="item.key">
+                    {{item.nombreAplicacion}}
+            </option>
+          </select>
+        </div>
+        <div class="form-outline mb-4">
+          <label class="text-white" 
+                 for="codProyecto">Código proyecto</label>
+          <input 
+              type="text" 
+              id="codProyecto" 
+              class="form-control cod-proy-input"
+              type="text"
+              ngModel
+              name="codProyecto"/>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-outline mb-4">
+          <label class="text-white" 
+                 for="transaccionInput">Transacción</label>
+          <select 
+            class="custom-select aplicacion-input-traz" 
+            id="transaccionInput" 
+            [(ngModel)]="transaccionValor"
+            name="transaccionValor">
+            <option disabled>Selecciona...</option>
+            <option *ngFor="let transaccion of subListaTransacciones" 
+                    [ngValue]="transaccion">
+                      {{transaccion.transaccionValor}}
+            </option>
+            </select>
+        </div>
+      </div>
+    </div>
+    <button 
+    type="submit" 
+    class="btn bg-info btn-block text-white btn-grabar-transaccion"
+    [disabled]="!form.valid">Buscar Trazabilidad </button>
+  </form>
+  <hr>
+  <div class="container" *ngIf="subListaTrazabilidades">
+    <table class="table table-striped table-dark">
+      <caption *ngIf="trazabilidadSearch!=null &&trazabilidadSearch.transaccion !=null &&
+      trazabilidadSearch.transaccion.transaccionValor!=null && trazabilidadSearch.idAplicacion!=null"
+      class="text-white">
+        Lista de trazabilidades encontradas con los criterios: Transaccion: 
+            {{trazabilidadSearch.transaccion.transaccionValor}} // Aplicacion: 
+        {{buscarAplicacionPorId(trazabilidadSearch.idAplicacion)}}</caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Aplicación</th>
+          <th scope="col">Código de proyecto</th>
+          <th scope="col">Transacción</th>
+          <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trazabilidad of subListaTrazabilidades; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{  buscarAplicacionPorId(trazabilidad.aplicacion) }}</td>
+            <td>{{ trazabilidad.proyecto.codigo }}</td>
+            <td>{{ trazabilidad.transaccion }}</td>
+            <td><button class="btn btn-primary" (click)="openModalTrazabilidadDetalle(content, trazabilidad)">Ver más</button></td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{trazabilidadForModal.proyecto.codigo}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="descripcionTrazabilidad">Descripción</label>
+        <div id="descripcionTrazabilidad">{{trazabilidadForModal.proyecto.descripcion}}</div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre Documento</th>
+              <!-- <th scope="col">Descargar</th> -->
+            </tr>
+            </thead>
+            <tbody>
+               <!-- <tr *ngFor="let file of trazabilidadForModal.documentacion; index as i">  -->
+               <!-- <tr *ngFor="let file of fileUploads; index as i"> -->
+               <tr *ngFor="let file of fileUploads_2; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <app-trazabilidad  [documento]='file'> </app-trazabilidad>
+                 <!-- <td *ngIf="profileUrl | async; let url">
+                    <a [href]="url | async" target="_blank">Download Me!</a></td> -->
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</ng-template>

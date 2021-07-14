@@ -1,0 +1,41 @@
+.aplicacion-input{
+    width: 65%;
+    margin-left: 11px;
+  }
+  .torre-input-div{
+    margin-top: 20px
+  }
+  .torre-input{
+  width: 66%;
+  margin-left: 44px;
+  }
+  .btn-grabar-aplicacion{
+    margin-top: 60px;
+    margin-left: 52px;
+    width: 80%;
+  }
+  .aplicacion-usuario{
+    width: 53%;
+    margin-left: 44px;
+  }
+  .aplicacion-input{
+    width: 53%;
+    margin-left: 113px;
+  }
+  .div-aplicacion{
+    margin-top: 59px;
+  }
+  .div-torre{margin-top: 40px;
+  }
+  .login-dark {
+    height:450px;
+    /* background:#475d62 ;url(../../assets/candado.png) */
+     background:#475d62; 
+    background-size:cover;
+    position:relative;
+    padding-top: 25px;
+  }
+  .reg-aplicacion{
+    margin-top: 50px;
+    width: 50%;
+  }

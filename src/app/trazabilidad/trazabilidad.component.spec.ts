@@ -8,16 +8,18 @@ describe('TrazabilidadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrazabilidadComponent ]
+      declarations: [ TrazabilidadComponent ],
+      providers:[TrazabilidadComponent]
     })
     .compileComponents();
+    component = TestBed.inject(TrazabilidadComponent);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TrazabilidadComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  //   fixture = TestBed.createComponent(TrazabilidadComponent);
+  //   component = fixture.componentInstance;
+  //   fixture.detectChanges();
+  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();
