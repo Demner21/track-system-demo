@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SupplierDataService } from 'src/app/services/supplier.data.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { InsumoService } from 'src/app/services/insumo.service';
 import { debounceTime, map } from 'rxjs/operators';
@@ -61,7 +60,7 @@ export class RegistrarInsumosComponent implements OnInit {
     tipoComponente:string
   };
 
-  listaComponentes:{nombreComponente:string, tipoComponente:string}[]=[];
+  listaComponentes:ComponenteItem[]=[];
   subListaTransacciones: any;
   constructor(
     private transaccionService:TransaccionService,
@@ -164,4 +163,14 @@ export class RegistrarInsumosComponent implements OnInit {
                    app => app.idAplicacion === idAplicacion 
                   ).nombreAplicacion;
   }  
+
+  quitarComponente(index:number){
+    this.listaComponentes.splice(index,1);
+  }
+}
+
+interface ComponenteItem
+{ 
+  nombreComponente:string, 
+  tipoComponente:string
 }
