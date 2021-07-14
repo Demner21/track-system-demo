@@ -170,4 +170,9 @@ export class RegistrarTrazabilidadComponent implements OnInit {
   isLoadingSucces:boolean =false;
   errorMessage: string=null;
   successMessage: string=null;
+
+
+  quitarArchivo(file:FileList){
+    this.selectedFiles=null;
+  }
 }

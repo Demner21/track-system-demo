@@ -106,12 +106,20 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Archivo</th>
+                      <th scope="col">Remover</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let fileSelected of selectedFiles; index as i">
                       <th scope="row">{{ i + 1 }}</th>
-                      <td>{{ fileSelected.name }}</td>
+                      <td scope="row">{{ fileSelected.name }}</td>
+                      <td scope="row">
+                        <button type="button"
+                                class="btn btn-danger"
+                                (click)="quitarArchivo(fileSelected)">
+                                <i class="far fa-trash-alt"></i>
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
           </table> 
