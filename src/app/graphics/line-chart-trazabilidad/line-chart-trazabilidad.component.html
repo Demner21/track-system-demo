@@ -1,17 +1,21 @@
 <ng-container>
-<h3>Historial de trazabilidades</h3>
-<div *ngIf="isLoading" style="text-align: center;">
+    <div class="card mt-2">
+        <div class="card-body">
+            <h5 class="card-title">Historial de trazabilidades</h5>
+            <div *ngIf="isLoading" style="text-align: center;">
                 <app-spinner></app-spinner>
-</div>
-<div class="chart-wrapper" *ngIf="show">
-    <canvas baseChart 
-        [datasets]="lineChartData" 
-        [labels]="lineChartLabels" 
-        [options]="lineChartOptions"
-        [colors]="lineChartColors" 
-        [legend]="lineChartLegend" 
-        [chartType]="lineChartType" 
-        [plugins]="lineChartPlugins">
-    </canvas>
-</div>
+            </div>
+            <div class="chart-wrapper" *ngIf="show">
+                <canvas baseChart 
+                    [datasets]="lineChartData" 
+                    [labels]="lineChartLabels" 
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors" 
+                    [legend]="lineChartLegend" 
+                    [chartType]="lineChartType" 
+                    [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
+        </div>
+    </div>
 </ng-container>
