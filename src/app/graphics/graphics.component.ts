@@ -22,7 +22,6 @@ export class GraphicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarListaTransacciones();
-    this.mostrarTransacciones();
    
   }
 
@@ -35,6 +34,7 @@ export class GraphicsComponent implements OnInit {
     ).subscribe(
       data => {
         this.listaTransacciones = data;
+        this.mostrarTransacciones();
       }
     );
   }
