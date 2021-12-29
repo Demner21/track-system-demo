@@ -14,14 +14,15 @@ import { Transaccion } from 'src/app/transaccion/transaccion.model';
 export class LineChartTrazabilidadProyectoComponent implements OnInit {
   listaTrazabilidades: any[];
   show: boolean=false;
-  transaccionSeleccionada:string='';
+  transaccionSeleccionada:string='Seleccione...';
 
   constructor(private trazabilidadService:TrazabiliadService,
     private transaccionService:TransaccionService) { }
 
   ngOnInit(): void {
-    this.cargarListaTrazabilidad();
+    // this.transaccionSeleccionada='Seleccione...';
     this.cargarListaTransacciones();
+    this.cargarListaTrazabilidad();
   }
   listaTransacciones: Transaccion[];
   private cargarListaTransacciones() {
@@ -81,62 +82,59 @@ export class LineChartTrazabilidadProyectoComponent implements OnInit {
     const nombreTransaccion=this.transaccionSeleccionada;
     
     const subListaConTransaccion= this.listaTrazabilidades.filter(traz=> traz.transaccion===nombreTransaccion );
-    console.log("sublista: filtrada con nombreTransaccion")
-    console.log(subListaConTransaccion)
+    // console.log("sublista: filtrada con nombreTransaccion")
+    // console.log(subListaConTransaccion)
 
     const mapWithCodigoProyectos= subListaConTransaccion
                                         .map(trazabilidad =>  trazabilidad.proyecto.codigo);
     
     const tempMonth=                     [...new Set(mapWithCodigoProyectos)];
     
-    console.log("tempMonth:")
-    console.log(tempMonth)
+    // console.log("tempMonth:")
+    // console.log(tempMonth)
 
     for (let index = 0; index < tempMonth.length; index++) {
       const proyecto = tempMonth[index];
-      console.log("iterando sobre proyecto"+ proyecto);
+      // console.log("iterando sobre proyecto"+ proyecto);
       const mapWithMonths= subListaConTransaccion.filter(traz=> traz.proyecto.codigo===proyecto)
                                               .map(trazabilidad =>  new Date(trazabilidad.fechaCreacion).getMonth());
       
-      console.log("mapa de meses encontrado del proyecto"+ proyecto);
-      console.log(mapWithMonths);
+      // console.log("mapa de meses encontrado del proyecto"+ proyecto);
+      // console.log(mapWithMonths);
       
       const mapReduce = mapWithMonths.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
-      console.log(mapReduce);
+      // console.log(mapReduce);
       const monthReduce =[ ...mapReduce.keys() ].sort();
       
       const monthsIndex = [0,1,2,3,4,5,6,7,8,9,10,11];
       let [min, max] = monthReduce.reduce(([prevMin,prevMax], curr)=>
       [Math.min(prevMin, curr), Math.max(prevMax, curr)], [Infinity, -Infinity]);
 
-      console.log("Min:", min);
-      console.log("Max:", max);
+      // console.log("Min:", min);
+      // console.log("Max:", max);
       const arrayData=[];
       for (let index = 0; index < monthsIndex.length; index++) {
         const month = monthsIndex[index];
-        console.log("month analizado"+ month )
+        // console.log("month analizado"+ month )
         for (let indexReduce = 0; indexReduce < monthReduce.length; indexReduce++) {
           if (month < min || month > max) {
-            console.log("MEs no permitido para registrar--no existen registros "+ month )
+            // console.log("MEs no permitido para registrar--no existen registros "+ month )
             break;
           }
-          console.log("mes dentro del rago para asignar registro "+ month )
-          console.log("monthReduce[indexReduce] "+ monthReduce[indexReduce] )
+          // console.log("mes dentro del rago para asignar registro "+ month )
+          // console.log("monthReduce[indexReduce] "+ monthReduce[indexReduce] )
           if (monthReduce[indexReduce]===month) {
             arrayData[month]= mapReduce.get(month);
             break;
           }else{
-            console.log("a cero -->"+ month )
+            // console.log("a cero -->"+ month )
             arrayData[month]= 0;
           }
           //arrayData[monthReduce[indexReduce]]= mapReduce.get(monthReduce[indexReduce]);
         }
       }
-      
-      
-      console.log("arrayData");
-      console.log(arrayData);
-
+      //console.log("arrayData");
+      // console.log(arrayData);
       this.lineChartData.push( { data: arrayData, label: proyecto });
     }
     this.lineChartLabels = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];;
